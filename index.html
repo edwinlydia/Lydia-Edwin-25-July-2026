@@ -1,12 +1,13 @@
-# Generating complete HTML file for Lydia & Edwin wedding website with full layout and styling
-html_content = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Lydia & Edwin · 25 July 2026</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Professional serif font -->
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&display=swap" rel="stylesheet">
+
   <style>
     body {
       margin: 0;
@@ -16,6 +17,8 @@ html_content = """
       scroll-behavior: smooth;
       font-size: 20px;
     }
+
+    /* HEADER */
     header {
       position: fixed;
       top: 0;
@@ -27,10 +30,12 @@ html_content = """
       justify-content: center;
       backdrop-filter: blur(8px);
     }
+
     header nav {
       display: flex;
       gap: 2rem;
     }
+
     header a {
       color: #fff;
       text-decoration: none;
@@ -38,18 +43,23 @@ html_content = """
       font-size: 0.9rem;
       text-transform: uppercase;
     }
+
     .rsvp-button {
       background: #e8e8e8;
       color: #000;
       padding: 0.4rem 1rem;
       border-radius: 999px;
       font-weight: 500;
+      font-family: 'Cormorant Garamond', serif;
     }
+
+    /* HERO */
     .hero {
       min-height: 100vh;
       position: relative;
       overflow: hidden;
     }
+
     .hero img {
       width: 100%;
       height: 100vh;
@@ -57,11 +67,19 @@ html_content = """
       filter: grayscale(100%);
       display: block;
     }
+
     .hero-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.7) 70%, #000 100%);
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.0) 0%,
+        rgba(0,0,0,0.3) 40%,
+        rgba(0,0,0,0.7) 70%,
+        #000 100%
+      );
     }
+
     .hero-banner {
       position: absolute;
       left: 50%;
@@ -70,6 +88,7 @@ html_content = """
       text-align: center;
       z-index: 2;
     }
+
     .hero-banner-title {
       font-size: 42px;
       letter-spacing: 0.25em;
@@ -79,6 +98,7 @@ html_content = """
       border: 1px solid rgba(255,255,255,0.25);
       font-weight: 500;
     }
+
     .hero-banner-subtitle {
       margin-top: 1.4rem;
       font-size: 40px;
@@ -86,68 +106,84 @@ html_content = """
       opacity: 0.95;
       font-weight: 400;
     }
+
     .hero-banner-venues {
       margin-top: 0.6rem;
       font-size: 22px;
       letter-spacing: 0.12em;
       opacity: 0.85;
     }
+
+    /* ORDER OF THE DAY */
     #order {
       text-align: center;
       padding: 6rem 2rem;
     }
+
     #order h3 {
       font-size: 30px;
       letter-spacing: 0.18em;
       margin-bottom: 3.5rem;
       font-weight: 500;
     }
+
     .order-list {
       max-width: 480px;
       margin: 0 auto;
       text-align: center;
     }
+
     .order-item {
       margin-bottom: 3.5rem;
     }
+
     .order-time {
       font-size: 20px;
       opacity: 0.85;
       letter-spacing: 0.1em;
       margin-bottom: 0.3rem;
     }
+
     .order-title {
       font-size: 28px;
       font-weight: 500;
       margin-bottom: 0.3rem;
     }
+
     .order-detail {
       font-size: 20px;
       opacity: 0.75;
     }
+
+    /* RSVP — dark background, softened fields */
     #rsvp {
       padding: 6rem 2rem;
       text-align: center;
-      background: #000;
+      background: #000; /* back to dark */
       color: #fff;
     }
+
     #rsvp h3 {
       font-size: 30px;
       letter-spacing: 0.18em;
       margin-bottom: 3rem;
       font-weight: 500;
+      color: #fff;
     }
+
     #rsvpForm {
       max-width: 500px;
       margin: 0 auto;
       text-align: left;
       font-size: 20px;
     }
+
     #rsvpForm label {
       display: block;
       margin-bottom: 6px;
       color: #fff;
     }
+
     #rsvpForm input,
     #rsvpForm select {
       width: 100%;
@@ -156,14 +192,15 @@ html_content = """
       font-family: 'Cormorant Garamond', serif;
       font-size: 18px;
       border-radius: 6px;
-      border: 1px solid #555;
-      background: #1a1a1a;
+      border: 1px solid #555; /* softer border */
+      background: #1a1a1a; /* soft charcoal instead of white */
       color: #fff;
     }
+
     #rsvpForm button {
       width: 100%;
       padding: 14px;
-      background: #d9d9d9;
+      background: #d9d9d9; /* soft grey instead of white */
       color: #000;
       border: none;
       border-radius: 999px;
@@ -172,35 +209,22 @@ html_content = """
       cursor: pointer;
       transition: 0.2s;
     }
+
     #rsvpForm button:hover {
       background: #cfcfcf;
     }
+
     #rsvpMessage {
       margin-top: 20px;
       text-align: center;
       font-size: 18px;
       color: #fff;
     }
-    .footer-image {
-      position: relative;
-      height: 100vh;
-      overflow: hidden;
-    }
-    .footer-image img {
-      width: 100%;
-      height: 100vh;
-      object-fit: cover;
-      filter: grayscale(100%);
-      display: block;
-    }
-    .footer-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, #000 0%, rgba(0,0,0,0.7) 40%, rgba(0,0,0,0.3) 80%, rgba(0,0,0,0.0) 100%);
-    }
   </style>
 </head>
+
 <body>
+
 <header>
   <nav>
     <a href="#hero">Home</a>
@@ -208,68 +232,132 @@ html_content = """
     <a href="#rsvp" class="rsvp-button">RSVP</a>
   </nav>
 </header>
+
+<!-- HERO -->
 <section id="hero" class="hero">
   <img src="images/blythhall-placeholder.PNG" alt="Blyth Hall" />
   <div class="hero-overlay"></div>
+
   <div class="hero-banner">
     <div class="hero-banner-title">LYDIA & EDWIN</div>
     <div class="hero-banner-subtitle">25 JULY 2026</div>
-    <div class="hero-banner-venues">OLTON FRIARY RC CHURCH → BLYTH HALL</div>
+    <div class="hero-banner-venues">
+      OLTON FRIARY RC CHURCH → BLYTH HALL
+    </div>
   </div>
 </section>
+
+<!-- ORDER OF THE DAY -->
 <section id="order">
   <h3>Order of the Day</h3>
+
   <div class="order-list">
-    <div class="order-item"><div class="order-time">12:00</div><div class="order-title">Ceremony</div><div class="order-detail">Olton Friary RC Church</div></div>
-    <div class="order-item"><div class="order-time">14:00</div><div class="order-title">Wedding Breakfast</div><div class="order-detail">Blyth Hall</div></div>
-    <div class="order-item"><div class="order-time">18:00</div><div class="order-title">Evening Party</div><div class="order-detail">Dancing & celebration</div></div>
-    <div class="order-item"><div class="order-time">23:00</div><div class="order-title">Carriages</div><div class="order-detail">Departure</div></div>
+
+    <div class="order-item">
+      <div class="order-time">12:00</div>
+      <div class="order-title">Ceremony</div>
+      <div class="order-detail">Olton Friary RC Church</div>
+    </div>
+
+    <div class="order-item">
+      <div class="order-time">14:00</div>
+      <div class="order-title">Wedding Breakfast</div>
+      <div class="order-detail">Blyth Hall</div>
+    </div>
+
+    <div class="order-item">
+      <div class="order-time">18:00</div>
+      <div class="order-title">Evening Party</div>
+      <div class="order-detail">Dancing & celebration</div>
+    </div>
+
+    <div class="order-item">
+      <div class="order-time">23:00</div>
+      <div class="order-title">Carriages</div>
+      <div class="order-detail">Departure</div>
+    </div>
+
   </div>
 </section>
+
+<!-- RSVP -->
 <section id="rsvp">
   <h3>RSVP</h3>
+
   <form id="rsvpForm">
+
     <label>Guest 1 Name</label>
     <input type="text" name="guest1" required>
+
     <label>Guest 2 Name (optional)</label>
     <input type="text" name="guest2">
+
     <label>Will you be attending?</label>
     <select name="attending" required>
       <option value="Yes">Yes</option>
       <option value="No">No</option>
     </select>
+
     <label>Main Course</label>
     <select name="main" required>
       <option value="Vegetarian">Vegetarian</option>
       <option value="Vegan">Vegan</option>
       <option value="Halal">Halal</option>
     </select>
+
     <label>Dessert Choice</label>
     <select name="dessert" required>
       <option value="Lotus Biscoff Cheesecake">Lotus Biscoff Cheesecake</option>
       <option value="Sticky Toffee Pudding">Sticky Toffee Pudding</option>
     </select>
+
     <label>Dietary Requirements</label>
     <input type="text" name="dietary" placeholder="Optional">
+
     <label>Drink Choice</label>
     <select name="drink" required>
       <option value="Coffee">Coffee</option>
       <option value="Espresso Martini">Espresso Martini</option>
     </select>
+
     <button type="submit">Submit RSVP</button>
+
     <p id="rsvpMessage"></p>
+
   </form>
+
+  <script>
+    document.getElementById("rsvpForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const form = e.target;
+      const data = {
+        guest1: form.guest1.value,
+        guest2: form.guest2.value,
+        attending: form.attending.value,
+        main: form.main.value,
+        dessert: form.dessert.value,
+        dietary: form.dietary.value,
+        drink: form.drink.value
+      };
+
+      fetch("YOUR_GOOGLE_SCRIPT_URL_HERE", {
+        method: "POST",
+        body: JSON.stringify(data)
+      })
+      .then(res => res.json())
+      .then(() => {
+        document.getElementById("rsvpMessage").innerText =
+          "Thank you — your RSVP has been received.";
+        form.reset();
+      })
+      .catch(() => {
+        document.getElementById("rsvpMessage").innerText =
+          "Something went wrong — please try again.";
+      });
+    });
+  </script>
 </section>
-<section class="footer-image">
-  <img src="images/olton-friary-placeholder.jpg" alt="Footer Background">
-  <div class="footer-overlay"></div>
-</section>
+
 </body>
 </html>
-"""
-
-with open("/mnt/data/index.html", "w", encoding="utf-8") as f:
-    f.write(html_content)
-
-print("Generated complete wedding website HTML file as 'index.html'")
-
