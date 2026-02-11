@@ -111,6 +111,7 @@
       opacity: 0.85;
     }
 
+    /* ORDER OF THE DAY */
     #order {
       text-align: center;
       padding: 6rem 2rem;
@@ -151,6 +152,7 @@
       opacity: 0.75;
     }
 
+    /* RSVP */
     #rsvp {
       padding: 6rem 2rem;
       text-align: center;
@@ -221,4 +223,159 @@
 
 <header>
   <nav>
-    <a href="#hero">
+    <a href="#hero">Home</a>
+    <a href="#order">Order</a>
+    <a href="#rsvp" class="rsvp-button">RSVP</a>
+  </nav>
+</header>
+
+<section id="hero" class="hero">
+  <img src="images/blythhall-placeholder.PNG" alt="Blyth Hall" />
+  <div class="hero-overlay"></div>
+
+  <div class="hero-banner">
+    <div class="hero-banner-title">LYDIA & EDWIN</div>
+    <div class="hero-banner-subtitle">25 JULY 2026</div>
+    <div class="hero-banner-venues">OLTON FRIARY RC CHURCH → BLYTH HALL</div>
+  </div>
+</section>
+
+<section id="order">
+  <h3>Order of the Day</h3>
+
+  <div class="order-list">
+
+    <div class="order-item">
+      <div class="order-time">12:00</div>
+      <div class="order-title">Ceremony</div>
+      <div class="order-detail">Olton Friary RC Church · Service begins 12:30</div>
+    </div>
+
+    <div class="order-item">
+      <div class="order-time">14:00</div>
+      <div class="order-title">Reception</div>
+      <div class="order-detail">Blyth Hall</div>
+    </div>
+
+    <div class="order-item">
+      <div class="order-time">16:00</div>
+      <div class="order-title">Wedding Breakfast & Speeches</div>
+    </div>
+
+    <div class="order-item">
+      <div class="order-time">18:30</div>
+      <div class="order-title">Evening Prelude</div>
+    </div>
+
+    <div class="order-item">
+      <div class="order-time">19:30</div>
+      <div class="order-title">First Dance</div>
+    </div>
+
+    <div class="order-item">
+      <div class="order-time">21:00</div>
+      <div class="order-title">Evening Food</div>
+    </div>
+
+    <div class="order-item">
+      <div class="order-time">00:00</div>
+      <div class="order-title">Carriages</div>
+    </div>
+
+  </div>
+</section>
+
+<section id="rsvp">
+  <h3>RSVP</h3>
+
+  <form id="rsvpForm">
+
+    <label>Guest Full Name</label>
+    <input type="text" name="guest1" placeholder="Complete a new RSVP for each individual guest" required>
+
+    <label>Dietary Requirements</label>
+    <select name="main" id="dietSelect" required>
+      <option value="" disabled selected>Select an option</option>
+      <option value="None">None</option>
+      <option value="Vegetarian">Vegetarian</option>
+      <option value="Vegan">Vegan</option>
+      <option value="Halal">Halal</option>
+      <option value="Gluten Free">Gluten Free</option>
+      <option value="Other">Other (please specify)</option>
+    </select>
+
+    <div id="otherDietWrapper" style="display:none;">
+      <label>Other Dietary Requirements</label>
+      <input type="text" name="dietary" id="otherDietInput" placeholder="Free Text">
+    </div>
+
+    <label>Dessert Choice</label>
+    <select name="dessert" required>
+      <option value="" disabled selected>Select an option</option>
+      <option value="Lotus Biscoff Cheesecake">Lotus Biscoff Cheesecake</option>
+      <option value="Sticky Toffee Pudding">Sticky Toffee Pudding</option>
+    </select>
+
+    <label>Digestif</label>
+    <select name="drink" required>
+      <option value="" disabled selected>Select an option</option>
+      <option value="Espresso Martini">Espresso Martini</option>
+      <option value="Coffee">Coffee</option>
+      <option value="Tea">Tea</option>
+    </select>
+
+    <button type="submit">Submit RSVP</button>
+
+    <p id="rsvpMessage"></p>
+
+  </form>
+
+  <script>
+    const dietSelect = document.getElementById("dietSelect");
+    const otherDietWrapper = document.getElementById("otherDietWrapper");
+    const otherDietInput = document.getElementById("otherDietInput");
+
+    dietSelect.addEventListener("change", () => {
+      if (dietSelect.value === "Other") {
+        otherDietWrapper.style.display = "block";
+        otherDietInput.required = true;
+      } else {
+        otherDietWrapper.style.display = "none";
+        otherDietInput.required = false;
+        otherDietInput.value = "";
+      }
+    });
+
+    document.getElementById("rsvpForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const form = e.target;
+      const data = {
+        guest1: form.guest1.value,
+        main: form.main.value,
+        dietary: form.dietary ? form.dietary.value : "",
+        dessert: form.dessert.value,
+        drink: form.drink.value
+      };
+
+      fetch("YOUR_GOOGLE_SCRIPT_URL_HERE", {
+        method: "POST",
+        body: JSON.stringify(data)
+      })
+      .then(res => res.json())
+      .then(() => {
+        document.getElementById("rsvpMessage").innerText =
+          "Thank you — your RSVP has been received.";
+        form.reset();
+        otherDietWrapper.style.display = "none";
+      })
+      .catch(() => {
+        document.getElementById("rsvpMessage").innerText =
+          "Something went wrong — please try again.";
+      });
+    });
+  </script>
+</section>
+
+</body>
+</html>
