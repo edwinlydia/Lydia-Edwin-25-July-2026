@@ -111,7 +111,6 @@
       opacity: 0.85;
     }
 
-    /* ORDER OF THE DAY */
     #order {
       text-align: center;
       padding: 6rem 2rem;
@@ -152,7 +151,6 @@
       opacity: 0.75;
     }
 
-    /* RSVP */
     #rsvp {
       padding: 6rem 2rem;
       text-align: center;
@@ -293,6 +291,13 @@
     <label>Guest Full Name</label>
     <input type="text" name="guest1" placeholder="Complete a new RSVP for each individual guest" required>
 
+    <label>Attending?</label>
+    <select name="attending" required>
+      <option value="" disabled selected>Select an option</option>
+      <option value="Yes">Yes</option>
+      <option value="No">No</option>
+    </select>
+
     <label>Dietary Requirements</label>
     <select name="main" id="dietSelect" required>
       <option value="" disabled selected>Select an option</option>
@@ -352,6 +357,7 @@
       const form = e.target;
       const data = {
         guest1: form.guest1.value,
+        attending: form.attending.value,
         main: form.main.value,
         dietary: form.dietary ? form.dietary.value : "",
         dessert: form.dessert.value,
