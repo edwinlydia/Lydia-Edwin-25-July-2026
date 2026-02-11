@@ -17,6 +17,7 @@
       font-size: 20px;
     }
 
+    /* HEADER */
     header {
       position: fixed;
       top: 0;
@@ -51,6 +52,7 @@
       font-family: 'Cormorant Garamond', serif;
     }
 
+    /* HERO */
     .hero {
       min-height: 100vh;
       position: relative;
@@ -68,7 +70,13 @@
     .hero-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.7) 70%, #000 100%);
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.0) 0%,
+        rgba(0,0,0,0.3) 40%,
+        rgba(0,0,0,0.7) 70%,
+        #000 100%
+      );
     }
 
     .hero-banner {
@@ -105,6 +113,7 @@
       opacity: 0.85;
     }
 
+    /* ORDER OF THE DAY */
     #order {
       text-align: center;
       padding: 6rem 2rem;
@@ -222,9 +231,11 @@
   </nav>
 </header>
 
+<!-- HERO -->
 <section id="hero" class="hero">
   <img src="images/blythhall-placeholder.PNG" alt="Blyth Hall" />
   <div class="hero-overlay"></div>
+
   <div class="hero-banner">
     <div class="hero-banner-title">LYDIA & EDWIN</div>
     <div class="hero-banner-subtitle">25 JULY 2026</div>
@@ -232,32 +243,40 @@
   </div>
 </section>
 
+<!-- ORDER OF THE DAY -->
 <section id="order">
   <h3>Order of the Day</h3>
+
   <div class="order-list">
+
     <div class="order-item">
       <div class="order-time">12:00</div>
       <div class="order-title">Ceremony</div>
       <div class="order-detail">Olton Friary RC Church</div>
     </div>
+
     <div class="order-item">
       <div class="order-time">14:00</div>
       <div class="order-title">Wedding Breakfast</div>
       <div class="order-detail">Blyth Hall</div>
     </div>
+
     <div class="order-item">
       <div class="order-time">18:00</div>
       <div class="order-title">Evening Party</div>
       <div class="order-detail">Dancing & celebration</div>
     </div>
+
     <div class="order-item">
       <div class="order-time">23:00</div>
       <div class="order-title">Carriages</div>
       <div class="order-detail">Departure</div>
     </div>
+
   </div>
 </section>
 
+<!-- RSVP -->
 <section id="rsvp">
   <h3>RSVP</h3>
 
@@ -267,14 +286,18 @@
     <input type="text" name="guest1" required>
 
     <label>Dietary Requirements</label>
-    <select name="main" required>
-      <option value="None">None</option>
+    <select name="main" id="dietSelect" required>
+      <option value="Vegetarian">Vegetarian</option>
+      <option value="Vegan">Vegan</option>
+      <option value="Halal">Halal</option>
       <option value="Gluten Free">Gluten Free</option>
-      <option value="Other">Other (please specify)</option>
+      <option value="Other">Other (please specify below)</option>
     </select>
 
-    <label>Other Dietary Requirements (please specify)</label>
-    <input type="text" name="dietary" placeholder="Optional">
+    <div id="otherDietWrapper" style="display:none;">
+      <label>Other Dietary Requirements (any not included in the above drop down)</label>
+      <input type="text" name="dietary" id="otherDietInput" placeholder="Optional">
+    </div>
 
     <label>Dessert Choice</label>
     <select name="dessert" required>
@@ -295,6 +318,23 @@
   </form>
 
   <script>
+    // Show/hide "Other Dietary Requirements" box
+    const dietSelect = document.getElementById("dietSelect");
+    const otherDietWrapper = document.getElementById("otherDietWrapper");
+    const otherDietInput = document.getElementById("otherDietInput");
+
+    dietSelect.addEventListener("change", () => {
+      if (dietSelect.value === "Other") {
+        otherDietWrapper.style.display = "block";
+        otherDietInput.required = true;
+      } else {
+        otherDietWrapper.style.display = "none";
+        otherDietInput.required = false;
+        otherDietInput.value = "";
+      }
+    });
+
+    // Submit handler
     document.getElementById("rsvpForm").addEventListener("submit", function(e) {
       e.preventDefault();
 
@@ -302,7 +342,7 @@
       const data = {
         guest1: form.guest1.value,
         main: form.main.value,
-        dietary: form.dietary.value,
+        dietary: form.dietary ? form.dietary.value : "",
         dessert: form.dessert.value,
         drink: form.drink.value
       };
@@ -316,6 +356,7 @@
         document.getElementById("rsvpMessage").innerText =
           "Thank you — your RSVP has been received.";
         form.reset();
+        otherDietWrapper.style.display = "none";
       })
       .catch(() => {
         document.getElementById("rsvpMessage").innerText =
