@@ -5,7 +5,6 @@
   <title>Lydia & Edwin · 25 July 2026</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Professional serif font -->
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
@@ -18,7 +17,6 @@
       font-size: 20px;
     }
 
-    /* HEADER */
     header {
       position: fixed;
       top: 0;
@@ -53,7 +51,6 @@
       font-family: 'Cormorant Garamond', serif;
     }
 
-    /* HERO */
     .hero {
       min-height: 100vh;
       position: relative;
@@ -71,13 +68,7 @@
     .hero-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(0,0,0,0.0) 0%,
-        rgba(0,0,0,0.3) 40%,
-        rgba(0,0,0,0.7) 70%,
-        #000 100%
-      );
+      background: linear-gradient(to bottom, rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.7) 70%, #000 100%);
     }
 
     .hero-banner {
@@ -114,7 +105,6 @@
       opacity: 0.85;
     }
 
-    /* ORDER OF THE DAY */
     #order {
       text-align: center;
       padding: 6rem 2rem;
@@ -155,11 +145,11 @@
       opacity: 0.75;
     }
 
-    /* RSVP — dark background, softened fields */
+    /* RSVP */
     #rsvp {
       padding: 6rem 2rem;
       text-align: center;
-      background: #000; /* back to dark */
+      background: #000;
       color: #fff;
     }
 
@@ -168,7 +158,6 @@
       letter-spacing: 0.18em;
       margin-bottom: 3rem;
       font-weight: 500;
-      color: #fff;
     }
 
     #rsvpForm {
@@ -192,15 +181,15 @@
       font-family: 'Cormorant Garamond', serif;
       font-size: 18px;
       border-radius: 6px;
-      border: 1px solid #555; /* softer border */
-      background: #1a1a1a; /* soft charcoal instead of white */
+      border: 1px solid #555;
+      background: #1a1a1a;
       color: #fff;
     }
 
     #rsvpForm button {
       width: 100%;
       padding: 14px;
-      background: #d9d9d9; /* soft grey instead of white */
+      background: #d9d9d9;
       color: #000;
       border: none;
       border-radius: 999px;
@@ -233,54 +222,42 @@
   </nav>
 </header>
 
-<!-- HERO -->
 <section id="hero" class="hero">
   <img src="images/blythhall-placeholder.PNG" alt="Blyth Hall" />
   <div class="hero-overlay"></div>
-
   <div class="hero-banner">
     <div class="hero-banner-title">LYDIA & EDWIN</div>
     <div class="hero-banner-subtitle">25 JULY 2026</div>
-    <div class="hero-banner-venues">
-      OLTON FRIARY RC CHURCH → BLYTH HALL
-    </div>
+    <div class="hero-banner-venues">OLTON FRIARY RC CHURCH → BLYTH HALL</div>
   </div>
 </section>
 
-<!-- ORDER OF THE DAY -->
 <section id="order">
   <h3>Order of the Day</h3>
-
   <div class="order-list">
-
     <div class="order-item">
       <div class="order-time">12:00</div>
       <div class="order-title">Ceremony</div>
       <div class="order-detail">Olton Friary RC Church</div>
     </div>
-
     <div class="order-item">
       <div class="order-time">14:00</div>
       <div class="order-title">Wedding Breakfast</div>
       <div class="order-detail">Blyth Hall</div>
     </div>
-
     <div class="order-item">
       <div class="order-time">18:00</div>
       <div class="order-title">Evening Party</div>
       <div class="order-detail">Dancing & celebration</div>
     </div>
-
     <div class="order-item">
       <div class="order-time">23:00</div>
       <div class="order-title">Carriages</div>
       <div class="order-detail">Departure</div>
     </div>
-
   </div>
 </section>
 
-<!-- RSVP -->
 <section id="rsvp">
   <h3>RSVP</h3>
 
@@ -289,21 +266,15 @@
     <label>Guest 1 Name</label>
     <input type="text" name="guest1" required>
 
-    <label>Guest 2 Name (optional)</label>
-    <input type="text" name="guest2">
-
-    <label>Will you be attending?</label>
-    <select name="attending" required>
-      <option value="Yes">Yes</option>
-      <option value="No">No</option>
-    </select>
-
-    <label>Main Course</label>
+    <label>Dietary Requirements</label>
     <select name="main" required>
-      <option value="Vegetarian">Vegetarian</option>
-      <option value="Vegan">Vegan</option>
-      <option value="Halal">Halal</option>
+      <option value="None">None</option>
+      <option value="Gluten Free">Gluten Free</option>
+      <option value="Other">Other (please specify)</option>
     </select>
+
+    <label>Other Dietary Requirements (please specify)</label>
+    <input type="text" name="dietary" placeholder="Optional">
 
     <label>Dessert Choice</label>
     <select name="dessert" required>
@@ -311,10 +282,7 @@
       <option value="Sticky Toffee Pudding">Sticky Toffee Pudding</option>
     </select>
 
-    <label>Dietary Requirements</label>
-    <input type="text" name="dietary" placeholder="Optional">
-
-    <label>Drink Choice</label>
+    <label>Digestif</label>
     <select name="drink" required>
       <option value="Coffee">Coffee</option>
       <option value="Espresso Martini">Espresso Martini</option>
@@ -333,11 +301,9 @@
       const form = e.target;
       const data = {
         guest1: form.guest1.value,
-        guest2: form.guest2.value,
-        attending: form.attending.value,
         main: form.main.value,
-        dessert: form.dessert.value,
         dietary: form.dietary.value,
+        dessert: form.dessert.value,
         drink: form.drink.value
       };
 
