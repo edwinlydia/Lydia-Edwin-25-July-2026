@@ -274,6 +274,7 @@
 
     <label>Dietary Requirements</label>
     <select name="main" id="dietSelect" required>
+      <option value="" disabled selected>Select an option</option>
       <option value="None">None</option>
       <option value="Vegetarian">Vegetarian</option>
       <option value="Vegan">Vegan</option>
@@ -289,12 +290,14 @@
 
     <label>Dessert Choice</label>
     <select name="dessert" required>
+      <option value="" disabled selected>Select an option</option>
       <option value="Lotus Biscoff Cheesecake">Lotus Biscoff Cheesecake</option>
       <option value="Sticky Toffee Pudding">Sticky Toffee Pudding</option>
     </select>
 
     <label>Digestif</label>
     <select name="drink" required>
+      <option value="" disabled selected>Select an option</option>
       <option value="Coffee">Coffee</option>
       <option value="Espresso Martini">Espresso Martini</option>
     </select>
@@ -306,7 +309,6 @@
   </form>
 
   <script>
-    // Show/hide "Other Dietary Requirements" box
     const dietSelect = document.getElementById("dietSelect");
     const otherDietWrapper = document.getElementById("otherDietWrapper");
     const otherDietInput = document.getElementById("otherDietInput");
@@ -322,7 +324,6 @@
       }
     });
 
-    // Submit handler
     document.getElementById("rsvpForm").addEventListener("submit", function(e) {
       e.preventDefault();
 
