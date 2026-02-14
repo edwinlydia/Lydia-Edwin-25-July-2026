@@ -32,11 +32,11 @@
 
     header nav {
       display: flex;
-      gap: 1.2rem;
+      gap: 2rem;
     }
 
     /* UNIFIED BUTTON STYLE */
-    header a {
+    .nav-button {
       color: #fff;
       text-decoration: none;
       letter-spacing: 0.12em;
@@ -48,14 +48,8 @@
       transition: 0.25s;
     }
 
-    /* HOVER EFFECT */
-    header a:hover {
-      background: #fff;
-      color: #000;
-    }
-
-    /* ACTIVE PAGE BUTTON */
-    header a.active {
+    /* ACTIVE BUTTON */
+    .nav-button.active {
       background: #fff;
       color: #000;
       border-color: #fff;
@@ -234,10 +228,10 @@
 
 <header>
   <nav>
-    <a href="#hero" class="active">Home</a>
-    <a href="#order">Order</a>
-    <a href="#rsvp">RSVP</a>
-    <a href="yellowstone.html">Gifts</a>
+    <a href="#hero" class="nav-button active" id="navHome">Home</a>
+    <a href="#order" class="nav-button" id="navOrder">Order</a>
+    <a href="#rsvp" class="nav-button" id="navRSVP">RSVP</a>
+    <a href="yellowstone.html" class="nav-button" id="navGifts">Gifts</a>
   </nav>
 </header>
 
@@ -350,6 +344,7 @@
   </form>
 
   <script>
+    /* DIETARY LOGIC */
     const dietSelect = document.getElementById("dietSelect");
     const otherDietWrapper = document.getElementById("otherDietWrapper");
     const otherDietInput = document.getElementById("otherDietInput");
@@ -365,6 +360,7 @@
       }
     });
 
+    /* RSVP SUBMISSION */
     document.getElementById("rsvpForm").addEventListener("submit", function(e) {
       e.preventDefault();
 
@@ -395,6 +391,31 @@
         document.getElementById("rsvpMessage").innerText =
           "Something went wrong — please try again.";
       });
+    });
+
+    /* ACTIVE NAV LOGIC */
+    const navHome = document.getElementById("navHome");
+    const navOrder = document.getElementById("navOrder");
+    const navRSVP = document.getElementById("navRSVP");
+
+    window.addEventListener("scroll", () => {
+      const y = window.scrollY;
+
+      const hero = document.getElementById("hero").offsetTop;
+      const order = document.getElementById("order").offsetTop - 200;
+      const rsvp = document.getElementById("rsvp").offsetTop - 200;
+
+      navHome.classList.remove("active");
+      navOrder.classList.remove("active");
+      navRSVP.classList.remove("active");
+
+      if (y >= rsvp) {
+        navRSVP.classList.add("active");
+      } else if (y >= order) {
+        navOrder.classList.add("active");
+      } else {
+        navHome.classList.add("active");
+      }
     });
   </script>
 </section>
