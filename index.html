@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Lydia & Edwin - 25 July 2026</title>
+  <title>Lydia & Edwin · 25 July 2026</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -364,8 +364,13 @@
         drink: form.drink.value
       };
 
-      fetch("https://script.google.com/macros/s/AKfycbwxo6ucVhEtKnrYEozaxTVsWWvUoefiNiYG4j2qC5sJ6HXu5UCQglWYsMeKM49K8w_6/exec", {
-method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) })
+      // Use form-encoded data to avoid CORS preflight / 405
+      const body = new URLSearchParams(data);
+
+      fetch("https://script.google.com/macros/s/AKfycbwxo6ucVhEtKnrYEozaxTVsWWvUoefiNiYG4j2qC5sJ6HXu5UCQgIWYsMeKM49K8w_6/exec", {
+        method: "POST",
+        body: body
+      })
       .then(res => res.json())
       .then(() => {
         document.getElementById("rsvpMessage").innerText =
