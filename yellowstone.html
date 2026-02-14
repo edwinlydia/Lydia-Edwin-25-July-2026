@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Yellowstone Gifts · Lydia & Edwin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Cormorant Garamond', serif;
+      background: #000;
+      color: #fff;
+      scroll-behavior: smooth;
+      font-size: 20px;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0,0,0,0.85);
+      padding: 1rem 2rem;
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      backdrop-filter: blur(8px);
+    }
+
+    header nav {
+      display: flex;
+      gap: 2rem;
+    }
+
+    header a {
+      color: #fff;
+      text-decoration: none;
+      letter-spacing: 0.12em;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+    }
+
+    .rsvp-button {
+      background: #e8e8e8;
+      color: #000;
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      font-weight: 500;
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    main {
+      padding: 7rem 2rem 4rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .intro {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .intro h1 {
+      font-size: 34px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .intro p {
+      max-width: 720px;
+      margin: 0.5rem auto;
+      line-height: 1.5;
+      opacity: 0.9;
+    }
+
+    .gifts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .gift-card {
+      background: #111;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid #333;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .gift-image {
+      height: 180px;
+      background-size: cover;
+      background-position: center;
+      filter: grayscale(40%);
+    }
+
+    .gift-content {
+      padding: 1.2rem 1.4rem 1.4rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .gift-title {
+      font-size: 22px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+    }
+
+    .gift-description {
+      font-size: 18px;
+      opacity: 0.85;
+      line-height: 1.4;
+    }
+
+    .gift-price {
+      font-size: 18px;
+      margin-top: 0.4rem;
+      opacity: 0.9;
+    }
+
+    .progress-wrapper {
+      margin-top: 0.6rem;
+    }
+
+    .progress-label {
+      font-size: 16px;
+      opacity: 0.85;
+      margin-bottom: 0.25rem;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 8px;
+      background: #222;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #f5e0b8, #f0c27b);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    .remaining-text {
+      font-size: 16px;
+      margin-top: 0.3rem;
+      opacity: 0.85;
+    }
+
+    .gift-actions {
+      margin-top: 0.8rem;
+    }
+
+    .gift-button {
+      width: 100%;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: none;
+      background: #e8e8e8;
+      color: #000;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .gift-button:hover {
+      background: #d4d4d4;
+    }
+
+    .gift-card.fully-funded {
+      opacity: 0.55;
+    }
+
+    .gift-card.fully-funded .gift-button {
+      background: #333;
+      color: #aaa;
+      cursor: default;
+    }
+
+    .ribbon {
+      position: absolute;
+      top: 12px;
+      right: -40px;
+      background: #f0c27b;
+      color: #000;
+      padding: 4px 40px;
+      transform: rotate(35deg);
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    /* Modal */
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+    }
+
+    .modal {
+      background: #111;
+      border-radius: 14px;
+      padding: 1.8rem 1.8rem 1.6rem;
+      max-width: 480px;
+      width: 100%;
+      border: 1px solid #333;
+    }
+
+    .modal h2 {
+      font-size: 24px;
+      margin-bottom: 0.6rem;
+    }
+
+    .modal p {
+      font-size: 18px;
+      line-height: 1.4;
+      opacity: 0.9;
+      margin-bottom: 0.6rem;
+    }
+
+    .bank-details {
+      background: #181818;
+      border-radius: 10px;
+      padding: 0.9rem 1rem;
+      margin: 0.8rem 0 1.2rem;
+      font-size: 18px;
+      line-height: 1.5;
+    }
+
+    .modal label {
+      display: block;
+      font-size: 17px;
+      margin-bottom: 4px;
+    }
+
+    .modal input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 14px;
+      border-radius: 6px;
+      border: 1px solid #555;
+      background: #1a1a1a;
+      color: #fff;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+    }
+
+    .modal-buttons {
+      display: flex;
+      gap: 0.8rem;
+      margin-top: 0.4rem;
+    }
+
+    .modal-button-primary {
+      flex: 1;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: none;
+      background: #e8e8e8;
+      color: #000;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .modal-button-primary:hover {
+      background: #d4d4d4;
+    }
+
+    .modal-button-secondary {
+      flex: 1;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid #555;
+      background: transparent;
+      color: #fff;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .modal-button-secondary:hover {
+      background: #222;
+    }
+
+    .modal-note {
+      font-size: 15px;
+      opacity: 0.8;
+      margin-top: 0.4rem;
+    }
+
+    .status-message {
+      text-align: center;
+      margin-top: 1.5rem;
+      font-size: 17px;
+      opacity: 0.9;
+    }
+
+    @media (max-width: 600px) {
+      main {
+        padding-top: 6.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="index.html#order">Order</a>
+    <a href="index.html#rsvp">RSVP</a>
+    <a href="yellowstone.html" class="rsvp-button">Gifts</a>
+  </nav>
+</header>
+
+<main>
+  <section class="intro">
+    <h1>Yellowstone Gifts</h1>
+    <p>We don’t need any gifts — your presence at our wedding is what matters most.</p>
+    <p>If you would like to help us live out the dream of exploring Yellowstone together, we would be deeply grateful for any contribution toward the experiences below.</p>
+  </section>
+
+  <section class="gifts-grid" id="giftsGrid">
+    <!-- Cards injected by JavaScript -->
+  </section>
+
+  <div class="status-message" id="statusMessage"></div>
+</main>
+
+<div class="modal-backdrop" id="modalBackdrop">
+  <div class="modal">
+    <h2 id="modalTitle">Contribute to this experience</h2>
+    <p id="modalDescription"></p>
+
+    <div class="bank-details">
+      <div><strong>Bank:</strong> HSBC</div>
+      <div><strong>Name:</strong> Edwin Waters</div>
+      <div><strong>Sort code:</strong> 40-19-34</div>
+      <div><strong>Account:</strong> 51371681</div>
+    </div>
+
+    <label for="donorName">Your name</label>
+    <input type="text" id="donorName" placeholder="So we can thank you properly">
+
+    <label for="donationAmount">Amount you’ve gifted (£)</label>
+    <input type="number" id="donationAmount" min="1" step="1">
+
+    <div class="modal-note">
+      After making a transfer using the details above, please confirm your gift here so we can update the experience.
+    </div>
+
+    <div class="modal-buttons">
+      <button class="modal-button-secondary" id="cancelButton">Cancel</button>
+      <button class="modal-button-primary" id="confirmButton">I’ve sent the gift</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const WEB_APP_URL = "YOUR_WEB_APP_URL_HERE";
+
+  const gifts = [
+    {
+      id: 1,
+      name: "Our First Yellowstone Coffee",
+      description: "A warm cup shared beneath the rising steam of Old Faithful — the moment our adventure begins.",
+      cost: 10,
+      image: "https://images.pexels.com/photos/34079/pexels-photo.jpg"
+    },
+    {
+      id: 2,
+      name: "Ice Cream at Mammoth Hot Springs",
+      description: "A sweet pause together after wandering the white mineral terraces.",
+      cost: 6,
+      image: "https://images.pexels.com/photos/461430/pexels-photo-461430.jpeg"
+    },
+    {
+      id: 3,
+      name: "Picnic Beside Grand Prismatic",
+      description: "A colourful, dreamlike lunch overlooking the rainbow pools — just the two of us.",
+      cost: 30,
+      image: "https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg"
+    },
+    {
+      id: 4,
+      name: "Reusable Water Bottles for the Trails",
+      description: "Keeping us refreshed as we wander through forests and geyser basins.",
+      cost: 20,
+      image: "https://images.pexels.com/photos/2664216/pexels-photo-2664216.jpeg"
+    },
+    {
+      id: 5,
+      name: "Binocular Rental for Wildlife Watching",
+      description: "Helping us spot bison, elk, and wolves moving across the valley floor.",
+      cost: 20,
+      image: "https://images.pexels.com/photos/639405/pexels-photo-639405.jpeg"
+    },
+    {
+      id: 6,
+      name: "Bear Spray Rental",
+      description: "A practical little gesture that keeps us safe as we explore the wild.",
+      cost: 15,
+      image: "https://images.pexels.com/photos/572897/pexels-photo-572897.jpeg"
+    },
+    {
+      id: 7,
+      name: "Ponchos for Geyser Mist Walks",
+      description: "For those misty boardwalk strolls where the air smells like adventure.",
+      cost: 15,
+      image: "https://images.pexels.com/photos/15382/pexels-photo.jpg"
+    },
+    {
+      id: 8,
+      name: "Yellowstone Park Entry Pass",
+      description: "Opening the gates to a week of wonder — geysers, canyons, and endless sky.",
+      cost: 30,
+      image: "https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg"
+    },
+    {
+      id: 9,
+      name: "Fuel for a Day of Exploring",
+      description: "Helping us chase waterfalls, wildlife, and winding roads hand‑in‑hand.",
+      cost: 30,
+      image: "https://images.pexels.com/photos/210182/pexels-photo-210182.jpeg"
+    },
+    {
+      id: 10,
+      name: "Breakfast for Two in the Park",
+      description: "A quiet morning meal before the day’s discoveries unfold.",
+      cost: 25,
+      image: "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg"
+    },
+    {
+      id: 11,
+      name: "Casual Lunch at a Lodge",
+      description: "A cosy midday stop between geysers and hot springs.",
+      cost: 40,
+      image: "https://images.pexels.com/photos/6267/menu-restaurant-vintage-table.jpg"
+    },
+    {
+      id: 12,
+      name: "Scenic Cruise on Yellowstone Lake",
+      description: "A peaceful hour drifting across still water, mountains reflecting around us.",
+      cost: 25,
+      image: "https://images.pexels.com/photos/210205/pexels-photo-210205.jpeg"
+    },
+    {
+      id: 13,
+      name: "Kayaking on Yellowstone Lake",
+      description: "A gentle paddle across glassy water — a memory we’ll treasure.",
+      cost: 80,
+      image: "https://images.pexels.com/photos/210007/pexels-photo-210007.jpeg"
+    },
+    {
+      id: 14,
+      name: "Horseback Riding Through the Pines",
+      description: "A slow, romantic ride through forests scented with pine and summer air.",
+      cost: 100,
+      image: "https://images.pexels.com/photos/1996333/pexels-photo-1996333.jpeg"
+    },
+    {
+      id: 15,
+      name: "Guided Hiking Adventure",
+      description: "A day with a naturalist leading us to hidden waterfalls and quiet overlooks.",
+      cost: 200,
+      image: "https://images.pexels.com/photos/196464/pexels-photo-196464.jpeg"
+    },
+    {
+      id: 16,
+      name: "Wolf Safari at Dawn",
+      description: "Watching the valley wake as wolves move through the mist — a lifelong dream moment.",
+      cost: 240,
+      image: "https://images.pexels.com/photos/247502/pexels-photo-247502.jpeg"
+    },
+    {
+      id: 17,
+      name: "Bear Safari in Lamar Valley",
+      description: "A guided journey into the heart of bear country, full of awe and excitement.",
+      cost: 240,
+      image: "https://images.pexels.com/photos/158179/lion-animal-predator-safari-158179.jpeg"
+    },
+    {
+      id: 18,
+      name: "Photography Tour for Two",
+      description: "Capturing the magic of geysers, wildlife, and golden light together.",
+      cost: 320,
+      image: "https://images.pexels.com/photos/167832/pexels-photo-167832.jpeg"
+    },
+    {
+      id: 19,
+      name: "Fuel for the Entire Trip",
+      description: "Every mile of our journey — from geysers to canyons to starlit drives.",
+      cost: 320,
+      image: "https://images.pexels.com/photos/210182/pexels-photo-210182.jpeg"
+    },
+    {
+      id: 20,
+      name: "Airport Transfers",
+      description: "Helping us reach the gateway to the wild.",
+      cost: 120,
+      image: "https://images.pexels.com/photos/21014/pexels-photo.jpg"
+    },
+    {
+      id: 21,
+      name: "Contribution to Flights",
+      description: "Bringing us across the ocean to the start of our honeymoon adventure.",
+      cost: 480,
+      image: "https://images.pexels.com/photos/46148/aircraft-jet-landing-cloud-46148.jpeg"
+    },
+    {
+      id: 22,
+      name: "Old Faithful Inn — Standard Room (1 Night)",
+      description: "A night inside Yellowstone’s most iconic lodge, where geysers glow under the stars.",
+      cost: 450,
+      image: "https://images.pexels.com/photos/271639/pexels-photo-271639.jpeg"
+    },
+    {
+      id: 23,
+      name: "Lake Yellowstone Hotel — Standard Room (1 Night)",
+      description: "A serene evening on the lake’s edge in the park’s grand, historic hotel.",
+      cost: 500,
+      image: "https://images.pexels.com/photos/271639/pexels-photo-271639.jpeg"
+    },
+    {
+      id: 24,
+      name: "Mammoth Hot Springs Hotel — Standard Room (1 Night)",
+      description: "A peaceful stay near steaming terraces and grazing elk.",
+      cost: 350,
+      image: "https://images.pexels.com/photos/2102587/pexels-photo-2102587.jpeg"
+    },
+    {
+      id: 25,
+      name: "Elk Country Inn, Jackson — Standard Room (1 Night)",
+      description: "A cosy mountain retreat to begin or end our adventure in style.",
+      cost: 300,
+      image: "https://images.pexels.com/photos/2102587/pexels-photo-2102587.jpeg"
+    }
+  ];
+
+  let fundingData = {};
+  let currentGiftId = null;
+
+  const giftsGrid = document.getElementById("giftsGrid");
+  const statusMessage = document.getElementById("statusMessage");
+
+  const modalBackdrop = document.getElementById("modalBackdrop");
+  const modalTitle = document.getElementById("modalTitle");
+  const modalDescription = document.getElementById("modalDescription");
+  const donorNameInput = document.getElementById("donorName");
+  const donationAmountInput = document.getElementById("donationAmount");
+  const cancelButton = document.getElementById("cancelButton");
+  const confirmButton = document.getElementById("confirmButton");
+
+  function renderGifts() {
+    giftsGrid.innerHTML = "";
+
+    gifts.forEach(gift => {
+      const funded = fundingData[gift.id]?.funded || 0;
+      const cost = gift.cost;
+      const remaining = Math.max(cost - funded, 0);
+      const percent = Math.min((funded / cost) * 100, 100);
+
+      const card = document.createElement("div");
+      card.className = "gift-card";
+      if (remaining <= 0) {
+        card.classList.add("fully-funded");
+      }
+
+      const imageDiv = document.createElement("div");
+      imageDiv.className = "gift-image";
+      imageDiv.style.backgroundImage = `url('${gift.image}')`;
+
+      const contentDiv = document.createElement("div");
+      contentDiv.className = "gift-content";
+
+      const titleDiv = document.createElement("div");
+      titleDiv.className = "gift-title";
+      titleDiv.textContent = gift.name;
+
+      const descDiv = document.createElement("div");
+      descDiv.className = "gift-description";
+      descDiv.textContent = gift.description;
+
+      const priceDiv = document.createElement("div");
+      priceDiv.className = "gift-price";
+      priceDiv.textContent = `£${gift.cost.toLocaleString("en-GB")}`;
+
+      const progressWrapper = document.createElement("div");
+      progressWrapper.className = "progress-wrapper";
+
+      const progressLabel = document.createElement("div");
+      progressLabel.className = "progress-label";
+      progressLabel.textContent = `£${funded.toLocaleString("en-GB")} of £${cost.toLocaleString("en-GB")} funded`;
+
+      const progressBar = document.createElement("div");
+      progressBar.className = "progress-bar";
+
+      const progressFill = document.createElement("div");
+      progressFill.className = "progress-fill";
+      progressFill.style.width = `${percent}%`;
+
+      progressBar.appendChild(progressFill);
+
+      const remainingText = document.createElement("div");
+      remainingText.className = "remaining-text";
+      remainingText.textContent = remaining > 0
+        ? `£${remaining.toLocaleString("en-GB")} remaining`
+        : "Fully gifted — thank you so much.";
+
+      progressWrapper.appendChild(progressLabel);
+      progressWrapper.appendChild(progressBar);
+      progressWrapper.appendChild(remainingText);
+
+      const actionsDiv = document.createElement("div");
+      actionsDiv.className = "gift-actions";
+
+      const button = document.createElement("button");
+      button.className = "gift-button";
+      button.textContent = remaining > 0 ? "Contribute" : "Fully gifted";
+
+      if (remaining > 0) {
+        button.addEventListener("click", () => openModal(gift, remaining));
+      } else {
+        button.disabled = true;
+      }
+
+      actionsDiv.appendChild(button);
+
+      contentDiv.appendChild(titleDiv);
+      contentDiv.appendChild(descDiv);
+      contentDiv.appendChild(priceDiv);
+      contentDiv.appendChild(progressWrapper);
+      contentDiv.appendChild(actionsDiv);
+
+      card.appendChild(imageDiv);
+      card.appendChild(contentDiv);
+
+      if (remaining <= 0) {
+        const ribbon = document.createElement("div");
+        ribbon.className = "ribbon";
+        ribbon.textContent = "Fully gifted";
+        card.appendChild(ribbon);
+      }
+
+      giftsGrid.appendChild(card);
+    });
+  }
+
+  function openModal(gift, remaining) {
+    currentGiftId = gift.id;
+    modalTitle.textContent = gift.name;
+    modalDescription.textContent = gift.description + ` (Target: £${gift.cost.toLocaleString("en-GB")})`;
+    donorNameInput.value = "";
+    donationAmountInput.value = "";
+    donationAmountInput.max = remaining;
+    donationAmountInput.placeholder = `Up to £${remaining.toLocaleString("en-GB")}`;
+    modalBackdrop.style.display = "flex";
+  }
+
+  function closeModal() {
+    modalBackdrop.style.display = "none";
+    currentGiftId = null;
+  }
+
+  cancelButton.addEventListener("click", closeModal);
+  modalBackdrop.addEventListener("click", (e) => {
+    if (e.target === modalBackdrop) {
+      closeModal();
+    }
+  });
+
+  confirmButton.addEventListener("click", () => {
+    if (!currentGiftId) return;
+
+    const donorName = donorNameInput.value.trim() || "Anonymous";
+    const amount = parseFloat(donationAmountInput.value);
+
+    if (!amount || amount <= 0) {
+      alert("Please enter a valid amount.");
+      return;
+    }
+
+    const gift = gifts.find(g => g.id === currentGiftId);
+    const funded = fundingData[gift.id]?.funded || 0;
+    const remaining = Math.max(gift.cost - funded, 0);
+
+    if (amount > remaining) {
+      alert(`The remaining amount for this experience is £${remaining.toLocaleString("en-GB")}.`);
+      return;
+    }
+
+    const body = new URLSearchParams({
+      mode: "donate",
+      id: String(gift.id),
+      donorName: donorName,
+      amount: String(amount)
+    });
+
+    confirmButton.disabled = true;
+
+    fetch(WEB_APP_URL, {
+      method: "POST",
+      body: body
+    })
+    .then(res => res.json())
+    .then(data => {
+      confirmButton.disabled = false;
+      closeModal();
+      if (data && data.success) {
+        statusMessage.textContent = "Thank you — your gift has been recorded.";
+        loadFundingData();
+      } else {
+        statusMessage.textContent = "Something went wrong recording your gift, but if you’ve sent a transfer, it has still reached us.";
+      }
+    })
+    .catch(() => {
+      confirmButton.disabled = false;
+      closeModal();
+      statusMessage.textContent = "Something went wrong recording your gift, but if you’ve sent a transfer, it has still reached us.";
+    });
+  });
+
+  function loadFundingData() {
+    fetch(WEB_APP_URL + "?mode=status")
+      .then(res => res.json())
+      .then(data => {
+        fundingData = {};
+        data.forEach(item => {
+          fundingData[item.id] = { funded: item.funded };
+        });
+        renderGifts();
+      })
+      .catch(() => {
+        fundingData = {};
+        renderGifts();
+      });
+  }
+
+  loadFundingData();
+</script>
+
+</body>
+</html>
