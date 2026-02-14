@@ -17,6 +17,7 @@
       font-size: 20px;
     }
 
+    /* HEADER */
     header {
       position: fixed;
       top: 0;
@@ -31,26 +32,36 @@
 
     header nav {
       display: flex;
-      gap: 2rem;
+      gap: 1.2rem;
     }
 
+    /* UNIFIED BUTTON STYLE */
     header a {
       color: #fff;
       text-decoration: none;
       letter-spacing: 0.12em;
       font-size: 0.9rem;
       text-transform: uppercase;
-    }
-
-    .rsvp-button {
-      background: #e8e8e8;
-      color: #000;
-      padding: 0.4rem 1rem;
+      padding: 0.45rem 1.1rem;
       border-radius: 999px;
-      font-weight: 500;
-      font-family: 'Cormorant Garamond', serif;
+      border: 1px solid rgba(255,255,255,0.25);
+      transition: 0.25s;
     }
 
+    /* HOVER EFFECT */
+    header a:hover {
+      background: #fff;
+      color: #000;
+    }
+
+    /* ACTIVE PAGE BUTTON */
+    header a.active {
+      background: #fff;
+      color: #000;
+      border-color: #fff;
+    }
+
+    /* HERO */
     .hero {
       min-height: 100vh;
       position: relative;
@@ -111,6 +122,7 @@
       opacity: 0.85;
     }
 
+    /* ORDER SECTION */
     #order {
       text-align: center;
       padding: 6rem 2rem;
@@ -151,6 +163,7 @@
       opacity: 0.75;
     }
 
+    /* RSVP SECTION */
     #rsvp {
       padding: 6rem 2rem;
       text-align: center;
@@ -221,11 +234,9 @@
 
 <header>
   <nav>
-    <a href="#hero">Home</a>
+    <a href="#hero" class="active">Home</a>
     <a href="#order">Order</a>
     <a href="#rsvp">RSVP</a>
-
-    <!-- ⭐ NEW LINK ADDED HERE ⭐ -->
     <a href="yellowstone.html">Gifts</a>
   </nav>
 </header>
