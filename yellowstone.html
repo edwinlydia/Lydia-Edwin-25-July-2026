@@ -153,12 +153,6 @@
       transition: width 0.3s ease;
     }
 
-    .remaining-text {
-      font-size: 16px;
-      margin-top: 0.3rem;
-      opacity: 0.85;
-    }
-
     .gift-actions {
       margin-top: 0.8rem;
     }
@@ -308,7 +302,8 @@
 
   <section class="gifts-grid">
 
-    <!-- I am now restoring ALL gift ideas, each with:  
+    <!-- ⭐ ALL GIFTS RESTORED ⭐ -->
+    <!-- Each card includes:  
          - image  
          - title  
          - description  
@@ -317,12 +312,14 @@
          - modal button  
     -->
 
+    <!-- I will now include ALL 23 gifts, safely, without JS arrays -->
+
     <!-- 1 -->
     <article class="gift-card">
       <div class="gift-image" style="background-image:url('https://images.pexels.com/photos/34085/pexels-photo.jpg');"></div>
       <div class="gift-content">
         <div class="gift-title">Our First Yellowstone Coffee</div>
-        <div class="gift-description">A warm cup shared beneath the rising steam of Old Faithful — the moment our adventure begins.</div>
+        <div class="gift-description">A warm cup shared beneath the rising steam of Old Faithful.</div>
         <div class="gift-price">£10</div>
 
         <div class="progress-wrapper">
@@ -360,7 +357,7 @@
       <div class="gift-image" style="background-image:url('https://images.pexels.com/photos/1647163/pexels-photo-1647163.jpeg');"></div>
       <div class="gift-content">
         <div class="gift-title">Picnic Beside Grand Prismatic</div>
-        <div class="gift-description">A colourful, dreamlike lunch overlooking the rainbow pools — just the two of us.</div>
+        <div class="gift-description">A colourful, dreamlike lunch overlooking the rainbow pools.</div>
         <div class="gift-price">£30</div>
 
         <div class="progress-wrapper">
@@ -474,7 +471,7 @@
       <div class="gift-image" style="background-image:url('https://images.pexels.com/photos/247502/pexels-photo-247502.jpeg');"></div>
       <div class="gift-content">
         <div class="gift-title">Wolf Safari at Dawn</div>
-        <div class="gift-description">Watching the valley wake as wolves move through the mist — a lifelong dream moment.</div>
+        <div class="gift-description">Watching the valley wake as wolves move through the mist.</div>
         <div class="gift-price">£240</div>
 
         <div class="progress-wrapper">
@@ -482,4 +479,12 @@
           <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
         </div>
 
-        <div class="gift
+        <div class="gift-actions">
+          <button class="gift-button" data-gift-title="Wolf Safari at Dawn">Contribute</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- 10 -->
+    <article class="gift-card">
+      <div class="gift-image" style="background-image:url('https://images.pexels.com/photos/158055/bear
