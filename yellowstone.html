@@ -17,11 +17,12 @@
       font-size: 20px;
     }
 
+    /* HEADER */
     header {
       position: fixed;
       top: 0;
       width: 100%;
-      background: rgba(0,0,0,0.85);
+      background: rgba(0,0,0,0.75);
       padding: 1rem 2rem;
       z-index: 1000;
       display: flex;
@@ -34,21 +35,22 @@
       gap: 2rem;
     }
 
-    header a {
+    .nav-button {
       color: #fff;
       text-decoration: none;
       letter-spacing: 0.12em;
       font-size: 0.9rem;
       text-transform: uppercase;
+      padding: 0.45rem 1.1rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.25);
+      transition: 0.25s;
     }
 
-    .rsvp-button {
-      background: #e8e8e8;
+    .nav-button.active {
+      background: #fff;
       color: #000;
-      padding: 0.4rem 1rem;
-      border-radius: 999px;
-      font-weight: 500;
-      font-family: 'Cormorant Garamond', serif;
+      border-color: #fff;
     }
 
     main {
@@ -313,12 +315,6 @@
       font-size: 17px;
       opacity: 0.9;
     }
-
-    @media (max-width: 600px) {
-      main {
-        padding-top: 6.5rem;
-      }
-    }
   </style>
 </head>
 
@@ -326,10 +322,10 @@
 
 <header>
   <nav>
-    <a href="index.html">Home</a>
-    <a href="index.html#order">Order</a>
-    <a href="index.html#rsvp">RSVP</a>
-    <a href="yellowstone.html" class="rsvp-button">Gifts</a>
+    <a href="index.html#hero" class="nav-button">Home</a>
+    <a href="index.html#order" class="nav-button">Order</a>
+    <a href="index.html#rsvp" class="nav-button">RSVP</a>
+    <a href="yellowstone.html" class="nav-button active">Gifts</a>
   </nav>
 </header>
 
@@ -345,6 +341,7 @@
   <div class="status-message" id="statusMessage"></div>
 </main>
 
+<!-- MODAL -->
 <div class="modal-backdrop" id="modalBackdrop">
   <div class="modal">
     <h2 id="modalTitle">Contribute to this experience</h2>
@@ -377,157 +374,28 @@
 <script>
   const WEB_APP_URL = "YOUR_WEB_APP_URL_HERE";
 
+  /* FULL GIFT LIST WITH CORRECT IMAGES */
   const gifts = [
-    {
-      id: 1,
-      name: "Our First Yellowstone Coffee",
-      description: "A warm cup shared beneath the rising steam of Old Faithful — the moment our adventure begins.",
-      cost: 10,
-      image: "https://images.pexels.com/photos/34085/pexels-photo.jpg"
-    },
-    {
-      id: 2,
-      name: "Ice Cream at Mammoth Hot Springs",
-      description: "A sweet pause together after wandering the white mineral terraces.",
-      cost: 6,
-      image: "https://images.pexels.com/photos/461430/pexels-photo-461430.jpeg"
-    },
-    {
-      id: 3,
-      name: "Picnic Beside Grand Prismatic",
-      description: "A colourful, dreamlike lunch overlooking the rainbow pools — just the two of us.",
-      cost: 30,
-      image: "https://images.pexels.com/photos/1647163/pexels-photo-1647163.jpeg"
-    },
-    {
-      id: 4,
-      name: "Reusable Water Bottles for the Trails",
-      description: "Keeping us refreshed as we wander through forests and geyser basins.",
-      cost: 20,
-      image: "https://images.pexels.com/photos/2664216/pexels-photo-2664216.jpeg"
-    },
-    {
-      id: 5,
-      name: "Binocular Rental for Wildlife Watching",
-      description: "Helping us spot bison, elk, and wolves moving across the valley floor.",
-      cost: 20,
-      image: "https://images.pexels.com/photos/639405/pexels-photo-639405.jpeg"
-    },
-    {
-      id: 6,
-      name: "Bear Spray Rental",
-      description: "A practical little gesture that keeps us safe as we explore the wild.",
-      cost: 15,
-      image: "https://images.pexels.com/photos/572897/pexels-photo-572897.jpeg"
-    },
-    {
-      id: 7,
-      name: "Ponchos for Geyser Mist Walks",
-      description: "For those misty boardwalk strolls where the air smells like adventure.",
-      cost: 15,
-      image: "https://images.pexels.com/photos/15382/pexels-photo.jpg"
-    },
-    {
-      id: 8,
-      name: "Yellowstone Park Entry Pass",
-      description: "Opening the gates to a week of wonder — geysers, canyons, and endless sky.",
-      cost: 30,
-      image: "https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg"
-    },
-    {
-      id: 9,
-      name: "Fuel for a Day of Exploring",
-      description: "Helping us chase waterfalls, wildlife, and winding roads hand‑in‑hand.",
-      cost: 30,
-      image: "https://images.pexels.com/photos/210182/pexels-photo-210182.jpeg"
-    },
-    {
-      id: 10,
-      name: "Breakfast for Two in the Park",
-      description: "A quiet morning meal before the day’s discoveries unfold.",
-      cost: 25,
-      image: "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg"
-    },
-    {
-      id: 11,
-      name: "Casual Lunch at a Lodge",
-      description: "A cosy midday stop between geysers and hot springs.",
-      cost: 40,
-      image: "https://images.pexels.com/photos/6267/menu-restaurant-vintage-table.jpg"
-    },
-    {
-      id: 12,
-      name: "Scenic Cruise on Yellowstone Lake",
-      description: "A peaceful hour drifting across still water, mountains reflecting around us.",
-      cost: 25,
-      image: "https://images.pexels.com/photos/210205/pexels-photo-210205.jpeg"
-    },
-    {
-      id: 13,
-      name: "Kayaking on Yellowstone Lake",
-      description: "A gentle paddle across glassy water — a memory we’ll treasure.",
-      cost: 80,
-      image: "https://images.pexels.com/photos/210007/pexels-photo-210007.jpeg"
-    },
-    {
-      id: 14,
-      name: "Horseback Riding Through the Pines",
-      description: "A slow, romantic ride through forests scented with pine and summer air.",
-      cost: 100,
-      image: "https://images.pexels.com/photos/1996333/pexels-photo-1996333.jpeg"
-    },
-    {
-      id: 15,
-      name: "Guided Hiking Adventure",
-      description: "A day with a naturalist leading us to hidden waterfalls and quiet overlooks.",
-      cost: 200,
-      image: "https://images.pexels.com/photos/196464/pexels-photo-196464.jpeg"
-    },
-    {
-      id: 16,
-      name: "Wolf Safari at Dawn",
-      description: "Watching the valley wake as wolves move through the mist — a lifelong dream moment.",
-      cost: 240,
-      image: "https://images.pexels.com/photos/247502/pexels-photo-247502.jpeg"
-    },
-    {
-      id: 17,
-      name: "Bear Safari in Lamar Valley",
-      description: "A guided journey into the heart of bear country, full of awe and excitement.",
-      cost: 240,
-      image: "https://images.pexels.com/photos/158055/bear-brown-bear-ursus-arctos-portrait-158055.jpeg"
-    },
-    {
-      id: 18,
-      name: "Photography Tour for Two",
-      description: "Capturing the magic of geysers, wildlife, and golden light together.",
-      cost: 320,
-      image: "https://images.pexels.com/photos/167832/pexels-photo-167832.jpeg"
-    },
-    {
-      id: 19,
-      name: "Fuel for the Entire Trip",
-      description: "Every mile of our journey — from geysers to canyons to starlit drives.",
-      cost: 320,
-      image: "https://images.pexels.com/photos/210182/pexels-photo-210182.jpeg"
-    },
-    {
-      id: 20,
-      name: "Airport Transfers",
-      description: "Helping us reach the gateway to the wild.",
-      cost: 120,
-      image: "https://images.pexels.com/photos/21014/pexels-photo.jpg"
-    },
-    {
-      id: 21,
-      name: "Contribution to Flights",
-      description: "Bringing us across the ocean to the start of our honeymoon adventure.",
-      cost: 480,
-      image: "https://images.pexels.com/photos/46148/aircraft-jet-landing-cloud-46148.jpeg"
-    },
-    {
-      id: 22,
-      name: "Old Faithful Inn — Standard Room (1 Night)",
-      description: "A night inside Yellowstone’s most iconic lodge, where geysers glow under the stars.",
-      cost: 450,
-      image:
+    { id: 1, name: "Our First Yellowstone Coffee", description: "A warm cup shared beneath the rising steam of Old Faithful — the moment our adventure begins.", cost: 10, image: "https://images.pexels.com/photos/34085/pexels-photo.jpg" },
+    { id: 2, name: "Ice Cream at Mammoth Hot Springs", description: "A sweet pause together after wandering the white mineral terraces.", cost: 6, image: "https://images.pexels.com/photos/461430/pexels-photo-461430.jpeg" },
+    { id: 3, name: "Picnic Beside Grand Prismatic", description: "A colourful, dreamlike lunch overlooking the rainbow pools — just the two of us.", cost: 30, image: "https://images.pexels.com/photos/1647163/pexels-photo-1647163.jpeg" },
+    { id: 4, name: "Reusable Water Bottles for the Trails", description: "Keeping us refreshed as we wander through forests and geyser basins.", cost: 20, image: "https://images.pexels.com/photos/2664216/pexels-photo-2664216.jpeg" },
+    { id: 5, name: "Binocular Rental for Wildlife Watching", description: "Helping us spot bison, elk, and wolves moving across the valley floor.", cost: 20, image: "https://images.pexels.com/photos/639405/pexels-photo-639405.jpeg" },
+    { id: 6, name: "Bear Spray Rental", description: "A practical little gesture that keeps us safe as we explore the wild.", cost: 15, image: "https://images.pexels.com/photos/572897/pexels-photo-572897.jpeg" },
+    { id: 7, name: "Ponchos for Geyser Mist Walks", description: "For those misty boardwalk strolls where the air smells like adventure.", cost: 15, image: "https://images.pexels.com/photos/15382/pexels-photo.jpg" },
+    { id: 8, name: "Yellowstone Park Entry Pass", description: "Opening the gates to a week of wonder — geysers, canyons, and endless sky.", cost: 30, image: "https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg" },
+    { id: 9, name: "Fuel for a Day of Exploring", description: "Helping us chase waterfalls, wildlife, and winding roads hand‑in‑hand.", cost: 30, image: "https://images.pexels.com/photos/210182/pexels-photo-210182.jpeg" },
+    { id: 10, name: "Breakfast for Two in the Park", description: "A quiet morning meal before the day’s discoveries unfold.", cost: 25, image: "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg" },
+    { id: 11, name: "Casual Lunch at a Lodge", description: "A cosy midday stop between geysers and hot springs.", cost: 40, image: "https://images.pexels.com/photos/6267/menu-restaurant-vintage-table.jpg" },
+    { id: 12, name: "Scenic Cruise on Yellowstone Lake", description: "A peaceful hour drifting across still water, mountains reflecting around us.", cost: 25, image: "https://images.pexels.com/photos/210205/pexels-photo-210205.jpeg" },
+    { id: 13, name: "Kayaking on Yellowstone Lake", description: "A gentle paddle across glassy water — a memory we’ll treasure.", cost: 80, image: "https://images.pexels.com/photos/210007/pexels-photo-210007.jpeg" },
+    { id: 14, name: "Horseback Riding Through the Pines", description: "A slow, romantic ride through forests scented with pine and summer air.", cost: 100, image: "https://images.pexels.com/photos/1996333/pexels-photo-1996333.jpeg" },
+    { id: 15, name: "Guided Hiking Adventure", description: "A day with a naturalist leading us to hidden waterfalls and quiet overlooks.", cost: 200, image: "https://images.pexels.com/photos/196464/pexels-photo-196464.jpeg" },
+    { id: 16, name: "Wolf Safari at Dawn", description: "Watching the valley wake as wolves move through the mist — a lifelong dream moment.", cost: 240, image: "https://images.pexels.com/photos/247502/pexels-photo-247502.jpeg" },
+    { id: 17, name: "Bear Safari in Lamar Valley", description: "A guided journey into the heart of bear country, full of awe and excitement.", cost: 240, image: "https://images.pexels.com/photos/158055/bear-brown-bear-ursus-arctos-portrait-158055.jpeg" },
+    { id: 18, name: "Photography Tour for Two", description: "Capturing the magic of geysers, wildlife, and golden light together.", cost: 320, image: "https://images.pexels.com/photos/167832/pexels-photo-167832.jpeg" },
+    { id: 19, name: "Fuel for the Entire Trip", description: "Every mile of our journey — from geysers to canyons to starlit drives.", cost: 320, image: "https://images.pexels.com/photos/210182/pexels-photo-210182.jpeg" },
+    { id: 20, name: "Airport Transfers", description: "Helping us reach the gateway to the wild.", cost: 120, image: "https://images.pexels.com/photos/21014/pexels-photo.jpg" },
+    { id: 21, name: "Contribution to Flights", description: "Bringing us across the ocean to the start of our honeymoon adventure.", cost: 480, image: "https://images.pexels.com/photos/46148/aircraft-jet-landing-cloud-46148.jpeg" },
+    { id: 22, name: "Old Faithful Inn — Standard Room (1 Night)", description: "A night inside Yellowstone’s most iconic lodge, where geysers glow under the stars.", cost: 450, image: "https://images.pexels.com/photos/271639/pexels-photo-271639.jpeg" },
+    { id: 23, name: "Lake Yellowstone Hotel — Standard Room (1 Night)", description: "A serene evening on the lake’s edge in the park’s grand, historic hotel.", cost: 500, image:
