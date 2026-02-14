@@ -364,10 +364,9 @@
         drink: form.drink.value
       };
 
-      // Use form-encoded data to avoid CORS preflight / 405
       const body = new URLSearchParams(data);
 
-      fetch("https://script.google.com/macros/s/AKfycbwxo6ucVhEtKnrYEozaxTVsWWvUoefiNiYG4j2qC5sJ6HXu5UCQglWYsMeKM49K8w_6/exec", {
+      fetch("https://script.google.com/macros/s/AKfycbzhYFWnGHDQaKxDxacV85wAcNLw3qyu0vBz1H11qu-u_gtoogIL4PPEgnfvnTcqnCov/exec", {
         method: "POST",
         body: body
       })
