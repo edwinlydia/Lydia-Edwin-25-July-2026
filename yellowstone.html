@@ -128,37 +128,6 @@
       opacity: 0.9;
     }
 
-    .progress-wrapper {
-      margin-top: 0.6rem;
-    }
-
-    .progress-label {
-      font-size: 16px;
-      opacity: 0.85;
-      margin-bottom: 0.25rem;
-    }
-
-    .progress-bar {
-      width: 100%;
-      height: 8px;
-      background: #222;
-      border-radius: 999px;
-      overflow: hidden;
-    }
-
-    .progress-fill {
-      height: 100%;
-      background: linear-gradient(90deg, #f5e0b8, #f0c27b);
-      width: 0%;
-      transition: width 0.3s ease;
-    }
-
-    .remaining-text {
-      font-size: 16px;
-      margin-top: 0.3rem;
-      opacity: 0.85;
-    }
-
     .gift-actions {
       margin-top: 0.8rem;
     }
@@ -178,29 +147,6 @@
 
     .gift-button:hover {
       background: #d4d4d4;
-    }
-
-    .gift-card.fully-funded {
-      opacity: 0.55;
-    }
-
-    .gift-card.fully-funded .gift-button {
-      background: #333;
-      color: #aaa;
-      cursor: default;
-    }
-
-    .ribbon {
-      position: absolute;
-      top: 12px;
-      right: -40px;
-      background: #f0c27b;
-      color: #000;
-      padding: 4px 40px;
-      transform: rotate(35deg);
-      font-size: 13px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
     }
 
     /* Modal */
@@ -308,13 +254,6 @@
       opacity: 0.8;
       margin-top: 0.4rem;
     }
-
-    .status-message {
-      text-align: center;
-      margin-top: 1.5rem;
-      font-size: 17px;
-      opacity: 0.9;
-    }
   </style>
 </head>
 
@@ -336,9 +275,179 @@
     <p>If you would like to help us live out the dream of exploring Yellowstone together, we would be deeply grateful for any contribution toward the experiences below.</p>
   </section>
 
-  <section class="gifts-grid" id="giftsGrid"></section>
+  <section class="gifts-grid">
 
-  <div class="status-message" id="statusMessage"></div>
+    <!-- 1 -->
+    <article class="gift-card">
+      <div class="gift-image" style="background-image:url('https://images.pexels.com/photos/34085/pexels-photo.jpg');"></div>
+      <div class="gift-content">
+        <div class="gift-title">Our First Yellowstone Coffee</div>
+        <div class="gift-description">
+          A warm cup shared beneath the rising steam of Old Faithful — the moment our adventure begins.
+        </div>
+        <div class="gift-price">£10</div>
+        <div class="gift-actions">
+          <button class="gift-button" data-gift-title="Our First Yellowstone Coffee">
+            Contribute to this experience
+          </button>
+        </div>
+      </div>
+    </article>
+
+    <!-- 2 -->
+    <article class="gift-card">
+      <div class="gift-image" style="background-image:url('https://images.pexels.com/photos/461430/pexels-photo-461430.jpeg');"></div>
+      <div class="gift-content">
+        <div class="gift-title">Ice Cream at Mammoth Hot Springs</div>
+        <div class="gift-description">
+          A sweet pause together after wandering the white mineral terraces.
+        </div>
+        <div class="gift-price">£6</div>
+        <div class="gift-actions">
+          <button class="gift-button" data-gift-title="Ice Cream at Mammoth Hot Springs">
+            Contribute to this experience
+          </button>
+        </div>
+      </div>
+    </article>
+
+    <!-- 3 -->
+    <article class="gift-card">
+      <div class="gift-image" style="background-image:url('https://images.pexels.com/photos/1647163/pexels-photo-1647163.jpeg');"></div>
+      <div class="gift-content">
+        <div class="gift-title">Picnic Beside Grand Prismatic</div>
+        <div class="gift-description">
+          A colourful, dreamlike lunch overlooking the rainbow pools — just the two of us.
+        </div>
+        <div class="gift-price">£30</div>
+        <div class="gift-actions">
+          <button class="gift-button" data-gift-title="Picnic Beside Grand Prismatic">
+            Contribute to this experience
+          </button>
+        </div>
+      </div>
+    </article>
+
+    <!-- 4 -->
+    <article class="gift-card">
+      <div class="gift-image" style="background-image:url('https://images.pexels.com/photos/2664216/pexels-photo-2664216.jpeg');"></div>
+      <div class="gift-content">
+        <div class="gift-title">Reusable Water Bottles for the Trails</div>
+        <div class="gift-description">
+          Keeping us refreshed as we wander through forests and geyser basins.
+        </div>
+        <div class="gift-price">£20</div>
+        <div class="gift-actions">
+          <button class="gift-button" data-gift-title="Reusable Water Bottles for the Trails">
+            Contribute to this experience
+          </button>
+        </div>
+      </div>
+    </article>
+
+    <!-- 5 -->
+    <article class="gift-card">
+      <div class="gift-image" style="background-image:url('https://images.pexels.com/photos/639405/pexels-photo-639405.jpeg');"></div>
+      <div class="gift-content">
+        <div class="gift-title">Binocular Rental for Wildlife Watching</div>
+        <div class="gift-description">
+          Helping us spot bison, elk, and wolves moving across the valley floor.
+        </div>
+        <div class="gift-price">£20</div>
+        <div class="gift-actions">
+          <button class="gift-button" data-gift-title="Binocular Rental for Wildlife Watching">
+            Contribute to this experience
+          </button>
+        </div>
+      </div>
+    </article>
+
+    <!-- 6 -->
+    <article class="gift-card">
+      <div class="gift-image" style="background-image:url('https://images.pexels.com/photos/572897/pexels-photo-572897.jpeg');"></div>
+      <div class="gift-content">
+        <div class="gift-title">Bear Spray Rental</div>
+        <div class="gift-description">
+          A practical little gesture that keeps us safe as we explore the wild.
+        </div>
+        <div class="gift-price">£15</div>
+        <div class="gift-actions">
+          <button class="gift-button" data-gift-title="Bear Spray Rental">
+            Contribute to this experience
+          </button>
+        </div>
+      </div>
+    </article>
+
+    <!-- 7 -->
+    <article class="gift-card">
+      <div class="gift-image" style="background-image:url('https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg');"></div>
+      <div class="gift-content">
+        <div class="gift-title">Yellowstone Park Entry Pass</div>
+        <div class="gift-description">
+          Opening the gates to a week of wonder — geysers, canyons, and endless sky.
+        </div>
+        <div class="gift-price">£30</div>
+        <div class="gift-actions">
+          <button class="gift-button" data-gift-title="Yellowstone Park Entry Pass">
+            Contribute to this experience
+          </button>
+        </div>
+      </div>
+    </article>
+
+    <!-- 8 -->
+    <article class="gift-card">
+      <div class="gift-image" style="background-image:url('https://images.pexels.com/photos/210182/pexels-photo-210182.jpeg');"></div>
+      <div class="gift-content">
+        <div class="gift-title">Fuel for a Day of Exploring</div>
+        <div class="gift-description">
+          Helping us chase waterfalls, wildlife, and winding roads hand‑in‑hand.
+        </div>
+        <div class="gift-price">£30</div>
+        <div class="gift-actions">
+          <button class="gift-button" data-gift-title="Fuel for a Day of Exploring">
+            Contribute to this experience
+          </button>
+        </div>
+      </div>
+    </article>
+
+    <!-- 9 -->
+    <article class="gift-card">
+      <div class="gift-image" style="background-image:url('https://images.pexels.com/photos/247502/pexels-photo-247502.jpeg');"></div>
+      <div class="gift-content">
+        <div class="gift-title">Wolf Safari at Dawn</div>
+        <div class="gift-description">
+          Watching the valley wake as wolves move through the mist — a lifelong dream moment.
+        </div>
+        <div class="gift-price">£240</div>
+        <div class="gift-actions">
+          <button class="gift-button" data-gift-title="Wolf Safari at Dawn">
+            Contribute to this experience
+          </button>
+        </div>
+      </div>
+    </article>
+
+    <!-- 10 -->
+    <article class="gift-card">
+      <div class="gift-image" style="background-image:url('https://images.pexels.com/photos/158055/bear-brown-bear-ursus-arctos-portrait-158055.jpeg');"></div>
+      <div class="gift-content">
+        <div class="gift-title">Bear Safari in Lamar Valley</div>
+        <div class="gift-description">
+          A guided journey into the heart of bear country, full of awe and excitement.
+        </div>
+        <div class="gift-price">£240</div>
+        <div class="gift-actions">
+          <button class="gift-button" data-gift-title="Bear Safari in Lamar Valley">
+            Contribute to this experience
+          </button>
+        </div>
+      </div>
+    </article>
+
+  </section>
 </main>
 
 <!-- MODAL -->
@@ -361,7 +470,7 @@
     <input type="number" id="donationAmount" min="1" step="1">
 
     <div class="modal-note">
-      After making a transfer using the details above, please confirm your gift here so we can update the experience.
+      After making a transfer using the details above, you can let us know what you’ve gifted here.
     </div>
 
     <div class="modal-buttons">
@@ -372,30 +481,40 @@
 </div>
 
 <script>
-  const WEB_APP_URL = ""; // Leave empty until Apps Script is ready
+  const modalBackdrop = document.getElementById("modalBackdrop");
+  const modalTitle = document.getElementById("modalTitle");
+  const modalDescription = document.getElementById("modalDescription");
+  const donorNameInput = document.getElementById("donorName");
+  const donationAmountInput = document.getElementById("donationAmount");
+  const cancelButton = document.getElementById("cancelButton");
+  const confirmButton = document.getElementById("confirmButton");
 
-  /* FULL GIFT LIST WITH CORRECT IMAGES */
-  const gifts = [
-    { id: 1, name: "Our First Yellowstone Coffee", description: "A warm cup shared beneath the rising steam of Old Faithful — the moment our adventure begins.", cost: 10, image: "https://images.pexels.com/photos/34085/pexels-photo.jpg" },
-    { id: 2, name: "Ice Cream at Mammoth Hot Springs", description: "A sweet pause together after wandering the white mineral terraces.", cost: 6, image: "https://images.pexels.com/photos/461430/pexels-photo-461430.jpeg" },
-    { id: 3, name: "Picnic Beside Grand Prismatic", description: "A colourful, dreamlike lunch overlooking the rainbow pools — just the two of us.", cost: 30, image: "https://images.pexels.com/photos/1647163/pexels-photo-1647163.jpeg" },
-    { id: 4, name: "Reusable Water Bottles for the Trails", description: "Keeping us refreshed as we wander through forests and geyser basins.", cost: 20, image: "https://images.pexels.com/photos/2664216/pexels-photo-2664216.jpeg" },
-    { id: 5, name: "Binocular Rental for Wildlife Watching", description: "Helping us spot bison, elk, and wolves moving across the valley floor.", cost: 20, image: "https://images.pexels.com/photos/639405/pexels-photo-639405.jpeg" },
-    { id: 6, name: "Bear Spray Rental", description: "A practical little gesture that keeps us safe as we explore the wild.", cost: 15, image: "https://images.pexels.com/photos/572897/pexels-photo-572897.jpeg" },
-    { id: 7, name: "Ponchos for Geyser Mist Walks", description: "For those misty boardwalk strolls where the air smells like adventure.", cost: 15, image: "https://images.pexels.com/photos/15382/pexels-photo.jpg" },
-    { id: 8, name: "Yellowstone Park Entry Pass", description: "Opening the gates to a week of wonder — geysers, canyons, and endless sky.", cost: 30, image: "https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg" },
-    { id: 9, name: "Fuel for a Day of Exploring", description: "Helping us chase waterfalls, wildlife, and winding roads hand‑in‑hand.", cost: 30, image: "https://images.pexels.com/photos/210182/pexels-photo-210182.jpeg" },
-    { id: 10, name: "Breakfast for Two in the Park", description: "A quiet morning meal before the day’s discoveries unfold.", cost: 25, image: "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg" },
-    { id: 11, name: "Casual Lunch at a Lodge", description: "A cosy midday stop between geysers and hot springs.", cost: 40, image: "https://images.pexels.com/photos/6267/menu-restaurant-vintage-table.jpg" },
-    { id: 12, name: "Scenic Cruise on Yellowstone Lake", description: "A peaceful hour drifting across still water, mountains reflecting around us.", cost: 25, image: "https://images.pexels.com/photos/210205/pexels-photo-210205.jpeg" },
-    { id: 13, name: "Kayaking on Yellowstone Lake", description: "A gentle paddle across glassy water — a memory we’ll treasure.", cost: 80, image: "https://images.pexels.com/photos/210007/pexels-photo-210007.jpeg" },
-    { id: 14, name: "Horseback Riding Through the Pines", description: "A slow, romantic ride through forests scented with pine and summer air.", cost: 100, image: "https://images.pexels.com/photos/1996333/pexels-photo-1996333.jpeg" },
-    { id: 15, name: "Guided Hiking Adventure", description: "A day with a naturalist leading us to hidden waterfalls and quiet overlooks.", cost: 200, image: "https://images.pexels.com/photos/196464/pexels-photo-196464.jpeg" },
-    { id: 16, name: "Wolf Safari at Dawn", description: "Watching the valley wake as wolves move through the mist — a lifelong dream moment.", cost: 240, image: "https://images.pexels.com/photos/247502/pexels-photo-247502.jpeg" },
-    { id: 17, name: "Bear Safari in Lamar Valley", description: "A guided journey into the heart of bear country, full of awe and excitement.", cost: 240, image: "https://images.pexels.com/photos/158055/bear-brown-bear-ursus-arctos-portrait-158055.jpeg" },
-    { id: 18, name: "Photography Tour for Two", description: "Capturing the magic of geysers, wildlife, and golden light together.", cost: 320, image: "https://images.pexels.com/photos/167832/pexels-photo-167832.jpeg" },
-    { id: 19, name: "Fuel for the Entire Trip", description: "Every mile of our journey — from geysers to canyons to starlit drives.", cost: 320, image: "https://images.pexels.com/photos/210182/pexels-photo-210182.jpeg" },
-    { id: 20, name: "Airport Transfers", description: "Helping us reach the gateway to the wild.", cost: 120, image: "https://images.pexels.com/photos/21014/pexels-photo.jpg" },
-    { id: 21, name: "Contribution to Flights", description: "Bringing us across the ocean to the start of our honeymoon adventure.", cost: 480, image: "https://images.pexels.com/photos/46148/aircraft-jet-landing-cloud-46148.jpeg" },
-    { id: 22, name: "Old Faithful Inn — Standard Room (1 Night)", description: "A night inside Yellowstone’s most iconic lodge, where geysers glow under the stars.", cost: 450, image: "https://images.pexels.com/photos/271639/pexels-photo-271639.jpeg" },
-    { id: 23, name
+  document.querySelectorAll(".gift-button").forEach(button => {
+    button.addEventListener("click", () => {
+      const title = button.getAttribute("data-gift-title");
+      modalTitle.textContent = title;
+      modalDescription.textContent = "Thank you so much for choosing to support this part of our Yellowstone adventure.";
+      donorNameInput.value = "";
+      donationAmountInput.value = "";
+      modalBackdrop.style.display = "flex";
+    });
+  });
+
+  cancelButton.addEventListener("click", () => {
+    modalBackdrop.style.display = "none";
+  });
+
+  confirmButton.addEventListener("click", () => {
+    modalBackdrop.style.display = "none";
+    alert("Thank you — we’re so grateful for your gift.");
+  });
+
+  modalBackdrop.addEventListener("click", (e) => {
+    if (e.target === modalBackdrop) {
+      modalBackdrop.style.display = "none";
+    }
+  });
+</script>
+
+</body>
+</html>
