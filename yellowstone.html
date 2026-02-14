@@ -340,9 +340,7 @@
     <p>If you would like to help us live out the dream of exploring Yellowstone together, we would be deeply grateful for any contribution toward the experiences below.</p>
   </section>
 
-  <section class="gifts-grid" id="giftsGrid">
-    <!-- Cards injected by JavaScript -->
-  </section>
+  <section class="gifts-grid" id="giftsGrid"></section>
 
   <div class="status-message" id="statusMessage"></div>
 </main>
@@ -385,7 +383,7 @@
       name: "Our First Yellowstone Coffee",
       description: "A warm cup shared beneath the rising steam of Old Faithful — the moment our adventure begins.",
       cost: 10,
-      image: "https://images.pexels.com/photos/34079/pexels-photo.jpg"
+      image: "https://images.pexels.com/photos/34085/pexels-photo.jpg"
     },
     {
       id: 2,
@@ -399,7 +397,7 @@
       name: "Picnic Beside Grand Prismatic",
       description: "A colourful, dreamlike lunch overlooking the rainbow pools — just the two of us.",
       cost: 30,
-      image: "https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg"
+      image: "https://images.pexels.com/photos/1647163/pexels-photo-1647163.jpeg"
     },
     {
       id: 4,
@@ -497,7 +495,7 @@
       name: "Bear Safari in Lamar Valley",
       description: "A guided journey into the heart of bear country, full of awe and excitement.",
       cost: 240,
-      image: "https://images.pexels.com/photos/158179/lion-animal-predator-safari-158179.jpeg"
+      image: "https://images.pexels.com/photos/158055/bear-brown-bear-ursus-arctos-portrait-158055.jpeg"
     },
     {
       id: 18,
@@ -532,232 +530,4 @@
       name: "Old Faithful Inn — Standard Room (1 Night)",
       description: "A night inside Yellowstone’s most iconic lodge, where geysers glow under the stars.",
       cost: 450,
-      image: "https://images.pexels.com/photos/271639/pexels-photo-271639.jpeg"
-    },
-    {
-      id: 23,
-      name: "Lake Yellowstone Hotel — Standard Room (1 Night)",
-      description: "A serene evening on the lake’s edge in the park’s grand, historic hotel.",
-      cost: 500,
-      image: "https://images.pexels.com/photos/271639/pexels-photo-271639.jpeg"
-    },
-    {
-      id: 24,
-      name: "Mammoth Hot Springs Hotel — Standard Room (1 Night)",
-      description: "A peaceful stay near steaming terraces and grazing elk.",
-      cost: 350,
-      image: "https://images.pexels.com/photos/2102587/pexels-photo-2102587.jpeg"
-    },
-    {
-      id: 25,
-      name: "Elk Country Inn, Jackson — Standard Room (1 Night)",
-      description: "A cosy mountain retreat to begin or end our adventure in style.",
-      cost: 300,
-      image: "https://images.pexels.com/photos/2102587/pexels-photo-2102587.jpeg"
-    }
-  ];
-
-  let fundingData = {};
-  let currentGiftId = null;
-
-  const giftsGrid = document.getElementById("giftsGrid");
-  const statusMessage = document.getElementById("statusMessage");
-
-  const modalBackdrop = document.getElementById("modalBackdrop");
-  const modalTitle = document.getElementById("modalTitle");
-  const modalDescription = document.getElementById("modalDescription");
-  const donorNameInput = document.getElementById("donorName");
-  const donationAmountInput = document.getElementById("donationAmount");
-  const cancelButton = document.getElementById("cancelButton");
-  const confirmButton = document.getElementById("confirmButton");
-
-  function renderGifts() {
-    giftsGrid.innerHTML = "";
-
-    gifts.forEach(gift => {
-      const funded = fundingData[gift.id]?.funded || 0;
-      const cost = gift.cost;
-      const remaining = Math.max(cost - funded, 0);
-      const percent = Math.min((funded / cost) * 100, 100);
-
-      const card = document.createElement("div");
-      card.className = "gift-card";
-      if (remaining <= 0) {
-        card.classList.add("fully-funded");
-      }
-
-      const imageDiv = document.createElement("div");
-      imageDiv.className = "gift-image";
-      imageDiv.style.backgroundImage = `url('${gift.image}')`;
-
-      const contentDiv = document.createElement("div");
-      contentDiv.className = "gift-content";
-
-      const titleDiv = document.createElement("div");
-      titleDiv.className = "gift-title";
-      titleDiv.textContent = gift.name;
-
-      const descDiv = document.createElement("div");
-      descDiv.className = "gift-description";
-      descDiv.textContent = gift.description;
-
-      const priceDiv = document.createElement("div");
-      priceDiv.className = "gift-price";
-      priceDiv.textContent = `£${gift.cost.toLocaleString("en-GB")}`;
-
-      const progressWrapper = document.createElement("div");
-      progressWrapper.className = "progress-wrapper";
-
-      const progressLabel = document.createElement("div");
-      progressLabel.className = "progress-label";
-      progressLabel.textContent = `£${funded.toLocaleString("en-GB")} of £${cost.toLocaleString("en-GB")} funded`;
-
-      const progressBar = document.createElement("div");
-      progressBar.className = "progress-bar";
-
-      const progressFill = document.createElement("div");
-      progressFill.className = "progress-fill";
-      progressFill.style.width = `${percent}%`;
-
-      progressBar.appendChild(progressFill);
-
-      const remainingText = document.createElement("div");
-      remainingText.className = "remaining-text";
-      remainingText.textContent = remaining > 0
-        ? `£${remaining.toLocaleString("en-GB")} remaining`
-        : "Fully gifted — thank you so much.";
-
-      progressWrapper.appendChild(progressLabel);
-      progressWrapper.appendChild(progressBar);
-      progressWrapper.appendChild(remainingText);
-
-      const actionsDiv = document.createElement("div");
-      actionsDiv.className = "gift-actions";
-
-      const button = document.createElement("button");
-      button.className = "gift-button";
-      button.textContent = remaining > 0 ? "Contribute" : "Fully gifted";
-
-      if (remaining > 0) {
-        button.addEventListener("click", () => openModal(gift, remaining));
-      } else {
-        button.disabled = true;
-      }
-
-      actionsDiv.appendChild(button);
-
-      contentDiv.appendChild(titleDiv);
-      contentDiv.appendChild(descDiv);
-      contentDiv.appendChild(priceDiv);
-      contentDiv.appendChild(progressWrapper);
-      contentDiv.appendChild(actionsDiv);
-
-      card.appendChild(imageDiv);
-      card.appendChild(contentDiv);
-
-      if (remaining <= 0) {
-        const ribbon = document.createElement("div");
-        ribbon.className = "ribbon";
-        ribbon.textContent = "Fully gifted";
-        card.appendChild(ribbon);
-      }
-
-      giftsGrid.appendChild(card);
-    });
-  }
-
-  function openModal(gift, remaining) {
-    currentGiftId = gift.id;
-    modalTitle.textContent = gift.name;
-    modalDescription.textContent = gift.description + ` (Target: £${gift.cost.toLocaleString("en-GB")})`;
-    donorNameInput.value = "";
-    donationAmountInput.value = "";
-    donationAmountInput.max = remaining;
-    donationAmountInput.placeholder = `Up to £${remaining.toLocaleString("en-GB")}`;
-    modalBackdrop.style.display = "flex";
-  }
-
-  function closeModal() {
-    modalBackdrop.style.display = "none";
-    currentGiftId = null;
-  }
-
-  cancelButton.addEventListener("click", closeModal);
-  modalBackdrop.addEventListener("click", (e) => {
-    if (e.target === modalBackdrop) {
-      closeModal();
-    }
-  });
-
-  confirmButton.addEventListener("click", () => {
-    if (!currentGiftId) return;
-
-    const donorName = donorNameInput.value.trim() || "Anonymous";
-    const amount = parseFloat(donationAmountInput.value);
-
-    if (!amount || amount <= 0) {
-      alert("Please enter a valid amount.");
-      return;
-    }
-
-    const gift = gifts.find(g => g.id === currentGiftId);
-    const funded = fundingData[gift.id]?.funded || 0;
-    const remaining = Math.max(gift.cost - funded, 0);
-
-    if (amount > remaining) {
-      alert(`The remaining amount for this experience is £${remaining.toLocaleString("en-GB")}.`);
-      return;
-    }
-
-    const body = new URLSearchParams({
-      mode: "donate",
-      id: String(gift.id),
-      donorName: donorName,
-      amount: String(amount)
-    });
-
-    confirmButton.disabled = true;
-
-    fetch(WEB_APP_URL, {
-      method: "POST",
-      body: body
-    })
-    .then(res => res.json())
-    .then(data => {
-      confirmButton.disabled = false;
-      closeModal();
-      if (data && data.success) {
-        statusMessage.textContent = "Thank you — your gift has been recorded.";
-        loadFundingData();
-      } else {
-        statusMessage.textContent = "Something went wrong recording your gift, but if you’ve sent a transfer, it has still reached us.";
-      }
-    })
-    .catch(() => {
-      confirmButton.disabled = false;
-      closeModal();
-      statusMessage.textContent = "Something went wrong recording your gift, but if you’ve sent a transfer, it has still reached us.";
-    });
-  });
-
-  function loadFundingData() {
-    fetch(WEB_APP_URL + "?mode=status")
-      .then(res => res.json())
-      .then(data => {
-        fundingData = {};
-        data.forEach(item => {
-          fundingData[item.id] = { funded: item.funded };
-        });
-        renderGifts();
-      })
-      .catch(() => {
-        fundingData = {};
-        renderGifts();
-      });
-  }
-
-  loadFundingData();
-</script>
-
-</body>
-</html>
+      image:
