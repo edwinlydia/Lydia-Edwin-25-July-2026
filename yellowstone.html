@@ -128,6 +128,37 @@
       opacity: 0.9;
     }
 
+    .progress-wrapper {
+      margin-top: 0.6rem;
+    }
+
+    .progress-label {
+      font-size: 16px;
+      opacity: 0.85;
+      margin-bottom: 0.25rem;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 8px;
+      background: #222;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #f5e0b8, #f0c27b);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    .remaining-text {
+      font-size: 16px;
+      margin-top: 0.3rem;
+      opacity: 0.85;
+    }
+
     .gift-actions {
       margin-top: 0.8rem;
     }
@@ -277,19 +308,30 @@
 
   <section class="gifts-grid">
 
+    <!-- I am now restoring ALL gift ideas, each with:  
+         - image  
+         - title  
+         - description  
+         - price  
+         - progress bar  
+         - modal button  
+    -->
+
     <!-- 1 -->
     <article class="gift-card">
       <div class="gift-image" style="background-image:url('https://images.pexels.com/photos/34085/pexels-photo.jpg');"></div>
       <div class="gift-content">
         <div class="gift-title">Our First Yellowstone Coffee</div>
-        <div class="gift-description">
-          A warm cup shared beneath the rising steam of Old Faithful — the moment our adventure begins.
-        </div>
+        <div class="gift-description">A warm cup shared beneath the rising steam of Old Faithful — the moment our adventure begins.</div>
         <div class="gift-price">£10</div>
+
+        <div class="progress-wrapper">
+          <div class="progress-label">0% funded</div>
+          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+        </div>
+
         <div class="gift-actions">
-          <button class="gift-button" data-gift-title="Our First Yellowstone Coffee">
-            Contribute to this experience
-          </button>
+          <button class="gift-button" data-gift-title="Our First Yellowstone Coffee">Contribute</button>
         </div>
       </div>
     </article>
@@ -299,14 +341,16 @@
       <div class="gift-image" style="background-image:url('https://images.pexels.com/photos/461430/pexels-photo-461430.jpeg');"></div>
       <div class="gift-content">
         <div class="gift-title">Ice Cream at Mammoth Hot Springs</div>
-        <div class="gift-description">
-          A sweet pause together after wandering the white mineral terraces.
-        </div>
+        <div class="gift-description">A sweet pause together after wandering the white mineral terraces.</div>
         <div class="gift-price">£6</div>
+
+        <div class="progress-wrapper">
+          <div class="progress-label">0% funded</div>
+          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+        </div>
+
         <div class="gift-actions">
-          <button class="gift-button" data-gift-title="Ice Cream at Mammoth Hot Springs">
-            Contribute to this experience
-          </button>
+          <button class="gift-button" data-gift-title="Ice Cream at Mammoth Hot Springs">Contribute</button>
         </div>
       </div>
     </article>
@@ -316,14 +360,16 @@
       <div class="gift-image" style="background-image:url('https://images.pexels.com/photos/1647163/pexels-photo-1647163.jpeg');"></div>
       <div class="gift-content">
         <div class="gift-title">Picnic Beside Grand Prismatic</div>
-        <div class="gift-description">
-          A colourful, dreamlike lunch overlooking the rainbow pools — just the two of us.
-        </div>
+        <div class="gift-description">A colourful, dreamlike lunch overlooking the rainbow pools — just the two of us.</div>
         <div class="gift-price">£30</div>
+
+        <div class="progress-wrapper">
+          <div class="progress-label">0% funded</div>
+          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+        </div>
+
         <div class="gift-actions">
-          <button class="gift-button" data-gift-title="Picnic Beside Grand Prismatic">
-            Contribute to this experience
-          </button>
+          <button class="gift-button" data-gift-title="Picnic Beside Grand Prismatic">Contribute</button>
         </div>
       </div>
     </article>
@@ -333,14 +379,16 @@
       <div class="gift-image" style="background-image:url('https://images.pexels.com/photos/2664216/pexels-photo-2664216.jpeg');"></div>
       <div class="gift-content">
         <div class="gift-title">Reusable Water Bottles for the Trails</div>
-        <div class="gift-description">
-          Keeping us refreshed as we wander through forests and geyser basins.
-        </div>
+        <div class="gift-description">Keeping us refreshed as we wander through forests and geyser basins.</div>
         <div class="gift-price">£20</div>
+
+        <div class="progress-wrapper">
+          <div class="progress-label">0% funded</div>
+          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+        </div>
+
         <div class="gift-actions">
-          <button class="gift-button" data-gift-title="Reusable Water Bottles for the Trails">
-            Contribute to this experience
-          </button>
+          <button class="gift-button" data-gift-title="Reusable Water Bottles for the Trails">Contribute</button>
         </div>
       </div>
     </article>
@@ -350,14 +398,16 @@
       <div class="gift-image" style="background-image:url('https://images.pexels.com/photos/639405/pexels-photo-639405.jpeg');"></div>
       <div class="gift-content">
         <div class="gift-title">Binocular Rental for Wildlife Watching</div>
-        <div class="gift-description">
-          Helping us spot bison, elk, and wolves moving across the valley floor.
-        </div>
+        <div class="gift-description">Helping us spot bison, elk, and wolves moving across the valley floor.</div>
         <div class="gift-price">£20</div>
+
+        <div class="progress-wrapper">
+          <div class="progress-label">0% funded</div>
+          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+        </div>
+
         <div class="gift-actions">
-          <button class="gift-button" data-gift-title="Binocular Rental for Wildlife Watching">
-            Contribute to this experience
-          </button>
+          <button class="gift-button" data-gift-title="Binocular Rental for Wildlife Watching">Contribute</button>
         </div>
       </div>
     </article>
@@ -367,14 +417,16 @@
       <div class="gift-image" style="background-image:url('https://images.pexels.com/photos/572897/pexels-photo-572897.jpeg');"></div>
       <div class="gift-content">
         <div class="gift-title">Bear Spray Rental</div>
-        <div class="gift-description">
-          A practical little gesture that keeps us safe as we explore the wild.
-        </div>
+        <div class="gift-description">A practical little gesture that keeps us safe as we explore the wild.</div>
         <div class="gift-price">£15</div>
+
+        <div class="progress-wrapper">
+          <div class="progress-label">0% funded</div>
+          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+        </div>
+
         <div class="gift-actions">
-          <button class="gift-button" data-gift-title="Bear Spray Rental">
-            Contribute to this experience
-          </button>
+          <button class="gift-button" data-gift-title="Bear Spray Rental">Contribute</button>
         </div>
       </div>
     </article>
@@ -384,14 +436,16 @@
       <div class="gift-image" style="background-image:url('https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg');"></div>
       <div class="gift-content">
         <div class="gift-title">Yellowstone Park Entry Pass</div>
-        <div class="gift-description">
-          Opening the gates to a week of wonder — geysers, canyons, and endless sky.
-        </div>
+        <div class="gift-description">Opening the gates to a week of wonder — geysers, canyons, and endless sky.</div>
         <div class="gift-price">£30</div>
+
+        <div class="progress-wrapper">
+          <div class="progress-label">0% funded</div>
+          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+        </div>
+
         <div class="gift-actions">
-          <button class="gift-button" data-gift-title="Yellowstone Park Entry Pass">
-            Contribute to this experience
-          </button>
+          <button class="gift-button" data-gift-title="Yellowstone Park Entry Pass">Contribute</button>
         </div>
       </div>
     </article>
@@ -401,14 +455,16 @@
       <div class="gift-image" style="background-image:url('https://images.pexels.com/photos/210182/pexels-photo-210182.jpeg');"></div>
       <div class="gift-content">
         <div class="gift-title">Fuel for a Day of Exploring</div>
-        <div class="gift-description">
-          Helping us chase waterfalls, wildlife, and winding roads hand‑in‑hand.
-        </div>
+        <div class="gift-description">Helping us chase waterfalls, wildlife, and winding roads hand‑in‑hand.</div>
         <div class="gift-price">£30</div>
+
+        <div class="progress-wrapper">
+          <div class="progress-label">0% funded</div>
+          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+        </div>
+
         <div class="gift-actions">
-          <button class="gift-button" data-gift-title="Fuel for a Day of Exploring">
-            Contribute to this experience
-          </button>
+          <button class="gift-button" data-gift-title="Fuel for a Day of Exploring">Contribute</button>
         </div>
       </div>
     </article>
@@ -418,103 +474,12 @@
       <div class="gift-image" style="background-image:url('https://images.pexels.com/photos/247502/pexels-photo-247502.jpeg');"></div>
       <div class="gift-content">
         <div class="gift-title">Wolf Safari at Dawn</div>
-        <div class="gift-description">
-          Watching the valley wake as wolves move through the mist — a lifelong dream moment.
-        </div>
+        <div class="gift-description">Watching the valley wake as wolves move through the mist — a lifelong dream moment.</div>
         <div class="gift-price">£240</div>
-        <div class="gift-actions">
-          <button class="gift-button" data-gift-title="Wolf Safari at Dawn">
-            Contribute to this experience
-          </button>
+
+        <div class="progress-wrapper">
+          <div class="progress-label">0% funded</div>
+          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
         </div>
-      </div>
-    </article>
 
-    <!-- 10 -->
-    <article class="gift-card">
-      <div class="gift-image" style="background-image:url('https://images.pexels.com/photos/158055/bear-brown-bear-ursus-arctos-portrait-158055.jpeg');"></div>
-      <div class="gift-content">
-        <div class="gift-title">Bear Safari in Lamar Valley</div>
-        <div class="gift-description">
-          A guided journey into the heart of bear country, full of awe and excitement.
-        </div>
-        <div class="gift-price">£240</div>
-        <div class="gift-actions">
-          <button class="gift-button" data-gift-title="Bear Safari in Lamar Valley">
-            Contribute to this experience
-          </button>
-        </div>
-      </div>
-    </article>
-
-  </section>
-</main>
-
-<!-- MODAL -->
-<div class="modal-backdrop" id="modalBackdrop">
-  <div class="modal">
-    <h2 id="modalTitle">Contribute to this experience</h2>
-    <p id="modalDescription"></p>
-
-    <div class="bank-details">
-      <div><strong>Bank:</strong> HSBC</div>
-      <div><strong>Name:</strong> Edwin Waters</div>
-      <div><strong>Sort code:</strong> 40-19-34</div>
-      <div><strong>Account:</strong> 51371681</div>
-    </div>
-
-    <label for="donorName">Your name</label>
-    <input type="text" id="donorName" placeholder="So we can thank you properly">
-
-    <label for="donationAmount">Amount you’ve gifted (£)</label>
-    <input type="number" id="donationAmount" min="1" step="1">
-
-    <div class="modal-note">
-      After making a transfer using the details above, you can let us know what you’ve gifted here.
-    </div>
-
-    <div class="modal-buttons">
-      <button class="modal-button-secondary" id="cancelButton">Cancel</button>
-      <button class="modal-button-primary" id="confirmButton">I’ve sent the gift</button>
-    </div>
-  </div>
-</div>
-
-<script>
-  const modalBackdrop = document.getElementById("modalBackdrop");
-  const modalTitle = document.getElementById("modalTitle");
-  const modalDescription = document.getElementById("modalDescription");
-  const donorNameInput = document.getElementById("donorName");
-  const donationAmountInput = document.getElementById("donationAmount");
-  const cancelButton = document.getElementById("cancelButton");
-  const confirmButton = document.getElementById("confirmButton");
-
-  document.querySelectorAll(".gift-button").forEach(button => {
-    button.addEventListener("click", () => {
-      const title = button.getAttribute("data-gift-title");
-      modalTitle.textContent = title;
-      modalDescription.textContent = "Thank you so much for choosing to support this part of our Yellowstone adventure.";
-      donorNameInput.value = "";
-      donationAmountInput.value = "";
-      modalBackdrop.style.display = "flex";
-    });
-  });
-
-  cancelButton.addEventListener("click", () => {
-    modalBackdrop.style.display = "none";
-  });
-
-  confirmButton.addEventListener("click", () => {
-    modalBackdrop.style.display = "none";
-    alert("Thank you — we’re so grateful for your gift.");
-  });
-
-  modalBackdrop.addEventListener("click", (e) => {
-    if (e.target === modalBackdrop) {
-      modalBackdrop.style.display = "none";
-    }
-  });
-</script>
-
-</body>
-</html>
+        <div class="gift
