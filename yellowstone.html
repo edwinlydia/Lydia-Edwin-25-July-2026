@@ -626,6 +626,33 @@
 </div>
   const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzG2nQuxP7R_KsNyITL1aH7uEjyKD3rFKQlDUMlwR_EKt5iM9umNdxBlheDR4uoik_t/exec";
 <script>
+async function loadProgress() {
+  const response = await fetch(WEB_APP_URL);
+  const payments = await response.json();
+
+  const totals = {};
+  payments.forEach(p => {
+    if (!totals[p.giftName]) totals[p.giftName] = 0;
+    totals[p.giftName] += Number(p.amount);
+  });
+
+  document.querySelectorAll(".gift-card").forEach(card => {
+    const title = card.querySelector(".gift-title").textContent;
+    const target = Number(card.dataset.target);
+    const paid = totals[title] || 0;
+
+    const percent = Math.min(100, Math.round((paid / target) * 100));
+
+    const fill = card.querySelector(".progress-fill");
+    const label = card.querySelector(".progress-label");
+
+    fill.style.width = percent + "%";
+    label.textContent = `${percent}% funded`;
+  });
+}
+
+loadProgress();
+
   const modalBackdrop = document.getElementById("modalBackdrop");
   const modalTitle = document.getElementById("modalTitle");
   const donorNameInput = document.getElementById("donorName");
