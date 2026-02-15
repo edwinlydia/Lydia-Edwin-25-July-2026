@@ -624,9 +624,10 @@
     </div>
   </div>
 </div>
-  const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzG2nQuxP7R_KsNyITL1aH7uEjyKD3rFKQlDUMlwR_EKt5iM9umNdxBlheDR4uoik_t/exec";
+  
 <script>
-async function loadProgress() {
+const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzG2nQuxP7R_KsNyITL1aH7uEjyKD3rFKQlDUMlwR_EKt5iM9umNdxBlheDR4uoik_t/exec";
+  async function loadProgress() {
   const response = await fetch(WEB_APP_URL);
   const payments = await response.json();
 
