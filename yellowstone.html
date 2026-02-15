@@ -627,20 +627,31 @@
   
 <script>
 const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzG2nQuxP7R_KsNyITL1aH7uEjyKD3rFKQlDUMlwR_EKt5iM9umNdxBlheDR4uoik_t/exec";
-  async function loadProgress() {
+ async function loadProgress() {
+  console.log("loadProgress() started");
+
   const response = await fetch(WEB_APP_URL);
+  console.log("status:", response.status);
+
   const payments = await response.json();
+  console.log("payments returned:", payments);
 
   const totals = {};
   payments.forEach(p => {
     if (!totals[p.giftName]) totals[p.giftName] = 0;
     totals[p.giftName] += Number(p.amount);
   });
+  console.log("totals:", totals);
 
-  document.querySelectorAll(".gift-card").forEach(card => {
+  const cards = document.querySelectorAll(".gift-card");
+  console.log("number of gift cards found:", cards.length);
+
+  cards.forEach(card => {
     const title = card.querySelector(".gift-title").textContent;
     const target = Number(card.dataset.target);
     const paid = totals[title] || 0;
+
+    console.log("card:", title, "target:", target, "paid:", paid);
 
     const percent = Math.min(100, Math.round((paid / target) * 100));
 
@@ -651,6 +662,7 @@ const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzG2nQuxP7R_KsNyITL
     label.textContent = `${percent}% funded`;
   });
 }
+
 
 loadProgress();
 
