@@ -192,6 +192,42 @@
     font-size: 0.8rem;
   }
 }
+
+/* Mobile nav fix */
+@media (max-width: 600px) {
+  header nav {
+    overflow-x: auto;
+    white-space: nowrap;
+    gap: 1rem;
+  }
+
+  header nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav-button {
+    padding: 0.45rem 0.9rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* Additional tightening for very small screens */
+@media (max-width: 600px) {
+  header {
+    padding: 0.8rem 1rem;
+  }
+
+  header nav {
+    gap: 0.6rem;
+  }
+
+  .nav-button {
+    padding: 0.4rem 0.7rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+  }
+}
+    
   </style>
 </head>
 
