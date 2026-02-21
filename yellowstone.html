@@ -175,6 +175,23 @@
     .gift-button:hover {
       background: #d4d4d4;
     }
+    /* Mobile nav fix */
+@media (max-width: 600px) {
+  header nav {
+    overflow-x: auto;
+    white-space: nowrap;
+    gap: 1rem; /* reduces spacing so everything fits better */
+  }
+
+  header nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav-button {
+    padding: 0.45rem 0.9rem; /* slightly smaller buttons on mobile */
+    font-size: 0.8rem;
+  }
+}
   </style>
 </head>
 
