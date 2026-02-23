@@ -129,12 +129,85 @@
 </header>
 
 <main>
+
+  <!-- INTRO -->
   <section class="intro">
     <h1>Guest Information</h1>
-    <p>Accommodation, travel, and everything you need to enjoy the day with us.</p>
+    <p>Everything you need to join us for our wedding day — from where to stay, to how to get to the church and reception with ease.</p>
   </section>
 
-  <!-- Add your accommodation + travel content here -->
+
+  <!-- ACCOMMODATION -->
+  <section style="margin-bottom: 3rem;">
+    <h2 style="font-size: 28px; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1rem;">Accommodation</h2>
+    <p style="max-width: 750px; line-height: 1.5; opacity: 0.9;">
+      Whether you're staying for the weekend or just the night, here are a few places close to both Olton Friary and Blyth Hall. We’ve chosen options that are convenient, comfortable, and easy to reach.
+    </p>
+
+    <ul style="margin-top: 1.5rem; line-height: 1.6; opacity: 0.9;">
+      <li><strong>Forest Hotel, Dorridge</strong> — A boutique hotel with a warm atmosphere and excellent food. Around 10 minutes from Blyth Hall.</li>
+      <li><strong>Hogarths Hotel, Solihull</strong> — Set in beautiful grounds, perfect for a relaxed stay. About 12 minutes from the reception.</li>
+      <li><strong>Village Hotel, Solihull</strong> — Modern, practical, and close to major roads. Around 15 minutes away.</li>
+      <li><strong>Premier Inn, Solihull Town Centre</strong> — A simple and reliable option, close to shops and transport links.</li>
+    </ul>
+  </section>
+
+
+  <!-- TRAVEL -->
+  <section style="margin-bottom: 3rem;">
+    <h2 style="font-size: 28px; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1rem;">Travel</h2>
+    <p style="max-width: 750px; line-height: 1.5; opacity: 0.9;">
+      Both venues are easy to reach by car or taxi. Below is everything you need to get between the church and the reception smoothly.
+    </p>
+
+    <h3 style="margin-top: 1.5rem; font-size: 22px;">By Car</h3>
+    <ul style="line-height: 1.6; opacity: 0.9;">
+      <li><strong>Olton Friary RC Church</strong> — B92 7BL</li>
+      <li><strong>Blyth Hall</strong> — B93 0DQ</li>
+    </ul>
+
+    <h3 style="margin-top: 1.5rem; font-size: 22px;">Taxi Options</h3>
+    <ul style="line-height: 1.6; opacity: 0.9;">
+      <li><strong>A2B Radio Cars</strong> — Reliable and local.</li>
+      <li><strong>Uber</strong> — Widely available in the area.</li>
+      <li><strong>Solihull Taxis</strong> — Good for larger groups.</li>
+    </ul>
+
+    <h3 style="margin-top: 1.5rem; font-size: 22px;">Train</h3>
+    <p style="max-width: 750px; line-height: 1.5; opacity: 0.9;">
+      The nearest stations are <strong>Olton</strong> (for the church) and <strong>Dorridge</strong> (for Blyth Hall). Both have regular services to Birmingham and surrounding areas.
+    </p>
+  </section>
+
+
+  <!-- PARKING -->
+  <section style="margin-bottom: 3rem;">
+    <h2 style="font-size: 28px; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1rem;">Parking</h2>
+    <p style="max-width: 750px; line-height: 1.5; opacity: 0.9;">
+      There is parking available at both venues:
+    </p>
+
+    <ul style="line-height: 1.6; opacity: 0.9;">
+      <li><strong>Olton Friary</strong> — On‑site parking is available behind the church.</li>
+      <li><strong>Blyth Hall</strong> — Plenty of parking on the grounds.</li>
+    </ul>
+  </section>
+
+
+  <!-- TIMINGS -->
+  <section style="margin-bottom: 3rem;">
+    <h2 style="font-size: 28px; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1rem;">Timings</h2>
+    <p style="max-width: 750px; line-height: 1.5; opacity: 0.9;">
+      We’ll share a full schedule closer to the day, but here’s the outline:
+    </p>
+
+    <ul style="line-height: 1.6; opacity: 0.9;">
+      <li><strong>Ceremony</strong> — 1:00pm at Olton Friary</li>
+      <li><strong>Drinks & Photos</strong> — Immediately after the ceremony</li>
+      <li><strong>Reception</strong> — From 3:00pm at Blyth Hall</li>
+      <li><strong>Carriages</strong> — Midnight</li>
+    </ul>
+  </section>
 
 </main>
 
