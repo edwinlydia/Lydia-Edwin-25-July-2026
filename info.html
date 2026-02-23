@@ -8,180 +8,216 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
-    /* ——— GLOBAL STYLES ——— */
-    body {
-      margin: 0;
-      font-family: 'Cormorant Garamond', serif;
-      background: #000;
-      color: #fff;
-      scroll-behavior: smooth;
-      font-size: 20px;
-    }
+  /* ——— GLOBAL STYLES ——— */
+  body {
+    margin: 0;
+    font-family: 'Cormorant Garamond', serif;
+    background: #000;
+    color: #fff;
+    scroll-behavior: smooth;
+    font-size: 20px;
+  }
 
-    /* ——— HEADER ——— */
-    header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: rgba(0,0,0,0.75);
-      padding: 1rem 2rem;
-      z-index: 1000;
-      display: flex;
-      justify-content: center;
-      backdrop-filter: blur(8px);
-    }
+  /* ——— HEADER ——— */
+  header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(0,0,0,0.75);
+    padding: 1rem 2rem;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    backdrop-filter: blur(8px);
+  }
 
+  header nav {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .nav-button {
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: 0.12em;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    padding: 0.45rem 1.1rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.25);
+    transition: 0.25s;
+  }
+
+  .nav-button.active {
+    background: #fff;
+    color: #000;
+    border-color: #fff;
+  }
+
+  /* ——— PAGE LAYOUT ——— */
+  main {
+    padding: 7rem 2rem 4rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .intro {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .intro h1 {
+    font-size: 34px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  .intro p {
+    max-width: 720px;
+    margin: 0.5rem auto;
+    line-height: 1.5;
+    opacity: 0.9;
+  }
+
+  /* ——— MOBILE NAV FIX ——— */
+  @media (max-width: 600px) {
     header nav {
-      display: flex;
-      gap: 2rem;
+      overflow-x: auto;
+      white-space: nowrap;
+      gap: 1rem;
+    }
+
+    header nav::-webkit-scrollbar {
+      display: none;
     }
 
     .nav-button {
-      color: #fff;
-      text-decoration: none;
-      letter-spacing: 0.12em;
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      padding: 0.45rem 1.1rem;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.25);
-      transition: 0.25s;
+      padding: 0.45rem 0.9rem;
+      font-size: 0.8rem;
+    }
+  }
+
+  /* ——— EXTRA MOBILE TIGHTENING ——— */
+  @media (max-width: 600px) {
+    header {
+      padding: 0.8rem 0.6rem;
     }
 
-    .nav-button.active {
-      background: #fff;
-      color: #000;
-      border-color: #fff;
+    header nav {
+      gap: 0.6rem;
     }
 
-    /* ——— PAGE LAYOUT ——— */
-    main {
-      padding: 7rem 2rem 4rem;
-      max-width: 1100px;
-      margin: 0 auto;
+    .nav-button {
+      padding: 0.4rem 0.7rem;
+      font-size: 0.75rem;
     }
+  }
 
-    .intro {
-      text-align: center;
-      margin-bottom: 3rem;
-    }
+  /* ——— BACKGROUND IMAGE ——— */
+  .bg-image {
+    position: fixed;
+    inset: 0;
+    background-image: url('images/Couple.jfif');
+    background-size: cover;
+    background-position: top center;
+    filter: grayscale(100%) brightness(0.35);
+    z-index: -1;
+  }
 
-    .intro h1 {
-      font-size: 34px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      margin-bottom: 1.5rem;
-    }
+  /* ——— SPACER ——— */
+  .image-spacer {
+    height: calc(100vh + 80px);
+  }
 
-    .intro p {
-      max-width: 720px;
-      margin: 0.5rem auto;
-      line-height: 1.5;
-      opacity: 0.9;
-    }
+  /* ——— SCROLL PROMPT ——— */
+  .scroll-prompt {
+    position: absolute;
+    bottom: 90px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    font-size: 1.25rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fadeIn 2s ease forwards 1s, pulse 3s ease-in-out infinite 3s;
+    pointer-events: none;
+    color: rgba(255,255,255,0.9);
+  }
 
-    /* ——— MOBILE NAV FIX ——— */
-    @media (max-width: 600px) {
-      header nav {
-        overflow-x: auto;
-        white-space: nowrap;
-        gap: 1rem;
-      }
+  .scroll-prompt .arrow {
+    display: block;
+    margin-top: 14px;
+    font-size: 1.8rem;
+    opacity: 0.9;
+    animation: floatDown 2.8s ease-in-out infinite;
+  }
 
-      header nav::-webkit-scrollbar {
-        display: none;
-      }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translate(-50%, 10px); }
+    to { opacity: 0.9; transform: translate(-50%, 0); }
+  }
 
-      .nav-button {
-        padding: 0.45rem 0.9rem;
-        font-size: 0.8rem;
-      }
-    }
+  @keyframes pulse {
+    0% { opacity: 0.9; }
+    50% { opacity: 0.55; }
+    100% { opacity: 0.9; }
+  }
 
-    /* ——— EXTRA MOBILE TIGHTENING ——— */
-    @media (max-width: 600px) {
-      header {
-        padding: 0.8rem 0.6rem;
-      }
-
-      header nav {
-        gap: 0.6rem;
-      }
-
-      .nav-button {
-        padding: 0.4rem 0.7rem;
-        font-size: 0.75rem;
-      }
-    }
-
-.bg-image {
-  position: fixed;
-  inset: 0;
-  background-image: url('images/Couple.jfif');
-  background-size: cover;
-  background-position: top center;
-  filter: grayscale(100%) brightness(0.35);
-  z-index: -1;
-}
-
-    <div class="scroll-prompt">
-  Scroll down for wedding information
-  <span class="arrow">⌄</span>
-</div>
-
-<div class="image-spacer"></div>
+  @keyframes floatDown {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+    100% { transform: translateY(0); }
+  }
 
 
-/* Spacer that matches the height of the image */
-.image-spacer {
-  height: calc(100vh + 80px); /* full screen height */
-}
+  /* Spacer that matches the height of the image */
+  .image-spacer {
+    height: calc(100vh + 80px);
+  }
 
-/* Elegant scroll prompt */
-.scroll-prompt {
-  position: absolute;
-  bottom: 90px; /* moved higher for visibility */
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-  font-size: 1.25rem; /* slightly larger */
-  letter-spacing: 0.22em; /* more elegant spacing */
-  text-transform: uppercase;
-  opacity: 0;
-  animation: fadeIn 2s ease forwards 1s, pulse 3s ease-in-out infinite 3s;
-  pointer-events: none;
-  color: rgba(255,255,255,0.9);
-}
+  /* Elegant scroll prompt */
+  .scroll-prompt {
+    position: absolute;
+    bottom: 90px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    font-size: 1.25rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fadeIn 2s ease forwards 1s, pulse 3s ease-in-out infinite 3s;
+    pointer-events: none;
+    color: rgba(255,255,255,0.9);
+  }
 
-.scroll-prompt .arrow {
-  display: block;
-  margin-top: 14px;
-  font-size: 1.8rem; /* larger arrow */
-  opacity: 0.9;
-  animation: floatDown 2.8s ease-in-out infinite;
-}
+  .scroll-prompt .arrow {
+    display: block;
+    margin-top: 14px;
+    font-size: 1.8rem;
+    opacity: 0.9;
+    animation: floatDown 2.8s ease-in-out infinite;
+  }
 
-/* Fade in */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translate(-50%, 10px); }
-  to { opacity: 0.9; transform: translate(-50%, 0); }
-}
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translate(-50%, 10px); }
+    to { opacity: 0.9; transform: translate(-50%, 0); }
+  }
 
-/* Gentle breathing pulse */
-@keyframes pulse {
-  0% { opacity: 0.9; }
-  50% { opacity: 0.55; }
-  100% { opacity: 0.9; }
-}
+  @keyframes pulse {
+    0% { opacity: 0.9; }
+    50% { opacity: 0.55; }
+    100% { opacity: 0.9; }
+  }
 
-/* Arrow drift animation */
-@keyframes floatDown {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(8px); }
-  100% { transform: translateY(0); }
-}
-
-   
+  @keyframes floatDown {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+    100% { transform: translateY(0); }
+  }
+  
   </style>
 </head>
 
@@ -189,6 +225,13 @@
 
   <div class="bg-image"></div>
 
+      <div class="scroll-prompt">
+  Scroll down for wedding information
+  <span class="arrow">⌄</span>
+</div>
+
+<div class="image-spacer"></div>
+  
 <header>
   <nav>
     <a href="index.html#hero" class="nav-button">Home</a>
@@ -200,12 +243,6 @@
 </header>
 
 <main>
-
-  <div class="scroll-prompt">
-  Scroll down for wedding information
-</div>
-
-<div class="image-spacer"></div>
   
   <!-- INTRO -->
   <section style="margin-bottom: 3.5rem;">
