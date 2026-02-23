@@ -170,54 +170,7 @@
     50% { transform: translateY(8px); }
     100% { transform: translateY(0); }
   }
-
-
-  /* Spacer that matches the height of the image */
-  .image-spacer {
-    height: calc(100vh + 80px);
-  }
-
-  /* Elegant scroll prompt */
-  .scroll-prompt {
-    position: absolute;
-    bottom: 90px;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    font-size: 1.25rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    opacity: 0;
-    animation: fadeIn 2s ease forwards 1s, pulse 3s ease-in-out infinite 3s;
-    pointer-events: none;
-    color: rgba(255,255,255,0.9);
-  }
-
-  .scroll-prompt .arrow {
-    display: block;
-    margin-top: 14px;
-    font-size: 1.8rem;
-    opacity: 0.9;
-    animation: floatDown 2.8s ease-in-out infinite;
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translate(-50%, 10px); }
-    to { opacity: 0.9; transform: translate(-50%, 0); }
-  }
-
-  @keyframes pulse {
-    0% { opacity: 0.9; }
-    50% { opacity: 0.55; }
-    100% { opacity: 0.9; }
-  }
-
-  @keyframes floatDown {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(8px); }
-    100% { transform: translateY(0); }
-  }
-  
+ 
   </style>
 </head>
 
