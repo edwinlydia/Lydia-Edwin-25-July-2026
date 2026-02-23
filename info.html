@@ -140,40 +140,48 @@
 /* Elegant scroll prompt */
 .scroll-prompt {
   position: absolute;
-  bottom: 60px;
+  bottom: 90px; /* moved higher for visibility */
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
-  font-size: 1rem;
-  letter-spacing: 0.18em;
+  font-size: 1.25rem; /* slightly larger */
+  letter-spacing: 0.22em; /* more elegant spacing */
   text-transform: uppercase;
   opacity: 0;
   animation: fadeIn 2s ease forwards 1s, pulse 3s ease-in-out infinite 3s;
   pointer-events: none;
-  color: rgba(255,255,255,0.85);
+  color: rgba(255,255,255,0.9);
 }
 
 .scroll-prompt .arrow {
   display: block;
-  margin-top: 12px;
-  font-size: 1.4rem;
-  opacity: 0.85;
+  margin-top: 14px;
+  font-size: 1.8rem; /* larger arrow */
+  opacity: 0.9;
+  animation: floatDown 2.8s ease-in-out infinite;
 }
 
 /* Fade in */
 @keyframes fadeIn {
   from { opacity: 0; transform: translate(-50%, 10px); }
-  to { opacity: 0.85; transform: translate(-50%, 0); }
+  to { opacity: 0.9; transform: translate(-50%, 0); }
 }
 
 /* Gentle breathing pulse */
 @keyframes pulse {
-  0% { opacity: 0.85; }
-  50% { opacity: 0.45; }
-  100% { opacity: 0.85; }
+  0% { opacity: 0.9; }
+  50% { opacity: 0.55; }
+  100% { opacity: 0.9; }
 }
 
-    
+/* Arrow drift animation */
+@keyframes floatDown {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+  100% { transform: translateY(0); }
+}
+
+   
   </style>
 </head>
 
