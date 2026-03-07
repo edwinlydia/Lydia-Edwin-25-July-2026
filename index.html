@@ -324,6 +324,8 @@
       <option value="No">No</option>
     </select>
 
+    <div id="rsvpExtraFields">
+
     <label>Dietary Requirements</label>
     <select name="main" id="dietSelect" required>
       <option value="" disabled selected>Select an option</option>
@@ -356,6 +358,8 @@
       <option value="None">None</option>
     </select>
 
+    </div> <!-- end of rsvpExtraFields -->
+
     <button type="submit">Submit RSVP</button>
 
     <p id="rsvpMessage"></p>
@@ -378,6 +382,26 @@
         otherDietInput.value = "";
       }
     });
+
+    /* ATTENDING LOGIC */
+  const attendingSelect = document.getElementById("attendingSelect");
+  const extraFields = document.getElementById("rsvpExtraFields");
+
+  attendingSelect.addEventListener("change", () => {
+  if (attendingSelect.value === "No") {
+    extraFields.style.display = "none";
+
+    document.querySelectorAll("#rsvpExtraFields select, #rsvpExtraFields input")
+      .forEach(el => el.required = false);
+
+  } else {
+    extraFields.style.display = "block";
+
+    document.querySelectorAll("#rsvpExtraFields select")
+      .forEach(el => el.required = true);
+  }
+  });
+
 
     /* RSVP SUBMISSION */
     document.getElementById("rsvpForm").addEventListener("submit", function(e) {
