@@ -317,10 +317,10 @@
     <label>Guest Full Name</label>
     <input type="text" name="guest1" placeholder="Complete a new RSVP for each individual guest" required>
 
-    <label>Attending?</label>
     <select name="attending" id="attendingSelect" required>
       <option value="" disabled selected>Select an option</option>
       <option value="Yes">Yes</option>
+      <option value="Evening">Evening Guest</option>
       <option value="No">No</option>
     </select>
 
@@ -342,21 +342,25 @@
       <input type="text" name="dietary" id="otherDietInput" placeholder="Free Text">
     </div>
 
-    <label>Dessert Choice</label>
-    <select name="dessert" required>
-      <option value="" disabled selected>Select an option</option>
-      <option value="Lotus Biscoff Cheesecake">Lotus Biscoff Cheesecake</option>
-      <option value="Sticky Toffee Pudding">Sticky Toffee Pudding</option>
-    </select>
+    <div id="mealFields">
 
-    <label>Digestif</label>
-    <select name="drink" required>
-      <option value="" disabled selected>Select an option</option>
-      <option value="Espresso Martini">Espresso Martini</option>
-      <option value="Coffee">Coffee</option>
-      <option value="Tea">Tea</option>
-      <option value="None">None</option>
-    </select>
+      <label>Dessert Choice</label>
+      <select name="dessert" required>
+        <option value="" disabled selected>Select an option</option>
+        <option value="Lotus Biscoff Cheesecake">Lotus Biscoff Cheesecake</option>
+        <option value="Sticky Toffee Pudding">Sticky Toffee Pudding</option>
+      </select>
+
+      <label>Digestif</label>
+      <select name="drink" required>
+        <option value="" disabled selected>Select an option</option>
+        <option value="Espresso Martini">Espresso Martini</option>
+        <option value="Coffee">Coffee</option>
+        <option value="Tea">Tea</option>
+        <option value="None">None</option>
+      </select>
+
+    </div>
 
     </div> <!-- end of rsvpExtraFields -->
 
@@ -386,22 +390,41 @@
     /* ATTENDING LOGIC */
   const attendingSelect = document.getElementById("attendingSelect");
   const extraFields = document.getElementById("rsvpExtraFields");
+  const mealFields = document.getElementById("mealFields");
 
   attendingSelect.addEventListener("change", () => {
-  if (attendingSelect.value === "No") {
-    extraFields.style.display = "none";
+    const value = attendingSelect.value;
 
-    document.querySelectorAll("#rsvpExtraFields select, #rsvpExtraFields input")
-      .forEach(el => el.required = false);
+    if (value === "No") {
+      // Hide everything
+      extraFields.style.display = "none";
+      mealFields.style.display = "none";
 
-  } else {
-    extraFields.style.display = "block";
+      document.querySelectorAll("#rsvpExtraFields select, #rsvpExtraFields input")
+        .forEach(el => el.required = false);
 
-    document.querySelectorAll("#rsvpExtraFields select")
-      .forEach(el => el.required = true);
-  }
+    } else if (value === "Evening") {
+      // Show dietary only
+      extraFields.style.display = "block";
+      mealFields.style.display = "none";
+
+      // Dietary required
+      dietSelect.required = true;
+
+      // Remove dessert + digestif requirements
+      document.querySelectorAll("#mealFields select")
+        .forEach(el => el.required = false);
+
+    } else if (value === "Yes") {
+      // Show everything
+      extraFields.style.display = "block";
+      mealFields.style.display = "block";
+
+      // Restore all required fields
+      document.querySelectorAll("#rsvpExtraFields select")
+        .forEach(el => el.required = true);
+    }
   });
-
 
     /* RSVP SUBMISSION */
     document.getElementById("rsvpForm").addEventListener("submit", function(e) {
